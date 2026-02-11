@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Create an app/site for a computer & laptop repair plus CCTV/networking services company named \"Legend Techno Solutions\".",
+  "architectural_notes": [
+    "Branding decision: use the uploaded dragon logo image as the new official Legend Techno Solutions logo (replace existing logo site-wide and align related branding assets as needed)."
+  ],
+  "known_issues": [
+    "Build/deployment process failed during app creation; user requested retry."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Edit Images\n- Replace the existing logo image with the uploaded logo artwork (legend-techno-logo-v2.dim_512x512.png > legend-techno-logo-uploaded.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-marketing-website-for-legend-techno-solutions-focused-on-computer-repair-laptop-repair-cctv-installation-and-networking-services-with-clear-navigation-and-calls-to-action",
+      "title": "Create a responsive marketing website for “Legend Techno Solutions” focused on computer repair, laptop repair, CCTV installation, and networking services, with clear navigation and calls-to-action.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-coherent-visual-theme-colors-typography-spacing-components-suitable-for-a-technical-repair-services-brand-and-apply-it-consistently-across-all-pages-sections-avoid-default-template-look",
+      "title": "Implement a coherent visual theme (colors, typography, spacing, components) suitable for a technical repair/services brand, and apply it consistently across all pages/sections (avoid default template look).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-services-section-page-that-clearly-presents-service-categories-computer-repair-laptop-repair-cctv-installation-and-networking-each-with-a-short-description-and-a-simple-request-service-cta-linking-to-the-contact-form",
+      "title": "Add a Services section/page that clearly presents service categories: Computer Repair, Laptop Repair, CCTV Installation, and Networking, each with a short description and a simple “Request Service” CTA linking to the Contact form.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-about-section-page-describing-legend-techno-solutions-and-its-service-coverage-including-a-concise-value-proposition-and-a-small-list-of-differentiators-e-g-fast-turnaround-genuine-parts-on-site-support-using-neutral-non-claimy-wording",
+      "title": "Add an About section/page describing Legend Techno Solutions and its service coverage, including a concise value proposition and a small list of differentiators (e.g., fast turnaround, genuine parts, on-site support) using neutral, non-claimy wording.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-contact-page-section-with-a-form-that-captures-name-phone-email-service-type-select-message-issue-description-and-preferred-contact-method-validate-inputs-on-the-client-and-show-success-error-states",
+      "title": "Create a Contact page/section with a form that captures: name, phone/email, service type (select), message/issue description, and preferred contact method; validate inputs on the client and show success/error states.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-admin-page-in-the-frontend-that-displays-stored-contact-inquiries-in-a-table-list-with-basic-client-side-filtering-by-service-type-and-most-recent-first-sorting",
+      "title": "Add a simple Admin page in the frontend that displays stored contact inquiries in a table/list, with basic client-side filtering by service type and most-recent-first sorting.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-required-generated-brand-images-as-static-assets-served-from-frontend-public-assets-generated-and-use-them-in-the-header-hero-and-favicon-app-icon-where-appropriate",
+      "title": "Integrate required generated brand images as static assets (served from frontend/public/assets/generated) and use them in the header/hero and favicon/app icon where appropriate.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-legend-techno-solutions-logo-image-with-a-new-logo-design-and-update-all-frontend-references-so-the-new-logo-is-used-wherever-the-old-logo-appears-site-header-and-footer",
+      "title": "Replace the current Legend Techno Solutions logo image with a new logo design, and update all frontend references so the new logo is used wherever the old logo appears (site header and footer).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-favicon-app-icon-with-a-new-version-that-matches-the-updated-logo-and-update-the-html-metadata-references-accordingly",
+      "title": "Replace the current favicon/app icon with a new version that matches the updated logo, and update the HTML metadata references accordingly.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-uploaded-logo-image-as-a-static-asset-in-the-frontend-and-use-it-as-the-primary-legend-techno-solutions-logo-wherever-the-current-logo-is-displayed-site-header-and-footer",
+      "title": "Add the uploaded logo image as a static asset in the frontend and use it as the primary Legend Techno Solutions logo wherever the current logo is displayed (site header and footer).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-logo-image-to-the-frontend-as-a-static-asset-and-update-all-logo-usages-so-the-site-header-and-footer-display-the-new-uploaded-logo-instead-of-the-current-generated-logo-asset",
+      "title": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-site-s-displayed-contact-phone-number-to-7019071669-wherever-a-phone-number-is-shown-in-the-ui-including-the-contact-section-s-contact-information-card",
+      "title": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an app/site for Legend Techno Solutions (computer/laptop repair and CCTV/networking services).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Persist contact inquiries in the Motoko backend and expose APIs to create an inquiry and list inquiries (for basic admin viewing). Store timestamp and all submitted fields.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Update/change the Legend Techno Solutions logo (replace current logo asset and reflect it in header/branding/favicon as applicable).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Update site-wide contact phone number to 7019071669 (display wherever contact info appears).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Legend Techno Solutions",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

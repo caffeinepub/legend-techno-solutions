@@ -1,0 +1,44 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-the-user-uploaded-logo-image-to-the-frontend-as-a-static-asset-and-update-all-logo-usages-so-the-site-header-and-footer-display-the-new-uploaded-logo-instead-of-the-current-generated-logo-asset",
+      "featureTitle": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+      "files": [
+        "frontend/src/components/site/Footer.tsx",
+        "frontend/src/components/site/Header.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-site-s-displayed-contact-phone-number-to-7019071669-wherever-a-phone-number-is-shown-in-the-ui-including-the-contact-section-s-contact-information-card",
+      "featureTitle": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
+      "files": [
+        "frontend/src/components/sections/ContactSection.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

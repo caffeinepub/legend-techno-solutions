@@ -1,0 +1,73 @@
+{
+  "kind": "build_request",
+  "title": "Use uploaded image as new logo and update contact phone number to 7019071669",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "text": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "update this image for logo",
+          "Yes, use this as the new logo OR"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new logo image file exists under frontend/public/assets/generated (or equivalent public static assets location) derived from the uploaded image.",
+        "frontend/src/components/site/Header.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
+        "frontend/src/components/site/Footer.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
+        "The logo renders correctly (not stretched) in both header and footer on mobile and desktop."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8",
+          "msg-10"
+        ],
+        "quotes": [
+          "and contact number 7019071669",
+          "Yes, update the site with 7019071669"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The phone number displayed in frontend/src/components/sections/ContactSection.tsx is updated from the placeholder number to 7019071669.",
+        "No other UI location continues to display the old placeholder phone number (+1 (555) 123-4567).",
+        "The phone number is formatted consistently (plain digits or a readable format) and is legible in both light and dark themes."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit any files under frontend/src/components/ui (Shadcn UI sources must be composed, not modified).",
+    "Do not modify immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+  ],
+  "nonGoals": [
+    "Do not change backend (Motoko) functionality or inquiry storage APIs for this request.",
+    "Do not redesign the overall site layout/theme beyond what is necessary to swap the logo and update the phone number.",
+    "Do not add third-party authentication providers (only Internet Identity is supported)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": [
+      "Replace the existing logo image with the uploaded logo artwork (legend-techno-logo-v2.dim_512x512.png > legend-techno-logo-uploaded.dim_512x512.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

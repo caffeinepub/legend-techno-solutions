@@ -1,0 +1,18 @@
+{
+  "frontend/src/App.tsx": "Main application component with hash-based routing between home (marketing site) and admin views, includes Toaster for notifications.",
+  "frontend/src/components/site/Header.tsx": "Responsive header with uploaded dragon logo, company name, navigation menu (desktop and mobile), and CTA button with smooth scrolling to sections.",
+  "frontend/src/components/site/Footer.tsx": "Footer with uploaded dragon logo, company info, quick links, services list, social media icons, CTA button, and attribution with dynamic year and UTM tracking.",
+  "frontend/src/components/sections/HeroSection.tsx": "Hero section with background image, company tagline, primary CTAs, and key statistics display.",
+  "frontend/src/components/sections/ServicesSection.tsx": "Services showcase with four service cards (Computer, Laptop, CCTV, Networking) each with icons, descriptions, and Request Service CTAs.",
+  "frontend/src/components/sections/AboutSection.tsx": "About section with company description, value proposition, and six feature highlights with icons.",
+  "frontend/src/components/sections/ContactSection.tsx": "Contact form with validation, service type selection, preferred contact method, contact information card displaying phone number 7019071669, and business hours; imports useCreateInquiry from useQueries.",
+  "frontend/src/hooks/useContactInquiry.ts": "React Query mutation hook for creating contact inquiries with toast notifications and cache invalidation.",
+  "frontend/src/hooks/useInquiries.ts": "React Query hook for fetching inquiries and utility functions for parsing structured message data (service type, contact preferences, phone).",
+  "frontend/src/pages/AdminPage.tsx": "Admin dashboard with authentication check, inquiry table, service type filtering, search functionality, and detailed inquiry display; imports hooks from useQueries.",
+  "frontend/src/components/auth/LoginButton.tsx": "Internet Identity login/logout button with loading states and error handling.",
+  "frontend/src/components/auth/AccessDeniedScreen.tsx": "Access denied screen for unauthorized admin access attempts with login prompt and home navigation.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using neutral base with amber accent colors for light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom amber color palette, Inter font, and extended design tokens.",
+  "frontend/index.html": "HTML entry point with meta tags and updated v2 favicon/apple-touch-icon links for Legend Techno Solutions.",
+  "frontend/src/hooks/useQueries.ts": "Consolidated React Query hooks for creating and fetching inquiries, plus utility functions for parsing structured message data (service type, contact preferences, phone, actual message)."
+}

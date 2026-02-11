@@ -1,0 +1,50 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Swap site logo to uploaded asset and update contact phone number",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "summary": "Add uploaded logo as a static asset and update header/footer to use it with correct, non-stretched rendering.",
+      "acceptanceCriteria": [
+        "A new logo image file exists under frontend/public/assets/generated (or equivalent public static assets location) derived from the uploaded image.",
+        "frontend/src/components/site/Header.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
+        "frontend/src/components/site/Footer.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
+        "The logo renders correctly (not stretched) in both header and footer on mobile and desktop."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the uploaded logo image as a public static asset at this exact path/filename to replace the previously generated logo."
+        },
+        {
+          "path": "frontend/src/components/site/Header.tsx",
+          "operation": "modify",
+          "description": "Update the logo <img> src to reference frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png and adjust image sizing classes (e.g., object-fit/contain with fixed height) so the logo is not stretched across mobile and desktop."
+        },
+        {
+          "path": "frontend/src/components/site/Footer.tsx",
+          "operation": "modify",
+          "description": "Update the logo <img> src to reference frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png and adjust image sizing classes (e.g., object-fit/contain with fixed height) so the logo is not stretched across mobile and desktop."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Update all displayed contact phone numbers in the UI to 7019071669, including the Contact Information card.",
+      "acceptanceCriteria": [
+        "The phone number displayed in frontend/src/components/sections/ContactSection.tsx is updated from the placeholder number to 7019071669.",
+        "No other UI location continues to display the old placeholder phone number (+1 (555) 123-4567).",
+        "The phone number is formatted consistently (plain digits or a readable format) and is legible in both light and dark themes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/sections/ContactSection.tsx",
+          "operation": "modify",
+          "description": "Replace the placeholder phone number text (+1 (555) 123-4567) with 7019071669 in the Contact Information card, keeping styling legible in light/dark themes."
+        }
+      ]
+    }
+  ]
+}

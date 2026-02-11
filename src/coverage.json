@@ -1,0 +1,55 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T16:28:34.483Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-12",
+        "summary": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+          "frontend/src/components/site/Header.tsx",
+          "frontend/src/components/site/Footer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+          "frontend/src/components/site/Header.tsx",
+          "frontend/src/components/site/Footer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/sections/ContactSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/sections/ContactSection.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+    "frontend/src/components/sections/ContactSection.tsx",
+    "frontend/src/components/site/Footer.tsx",
+    "frontend/src/components/site/Header.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
