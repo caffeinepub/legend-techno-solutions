@@ -10,12 +10,24 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface BusinessHours { 'hours' : string, 'days' : string }
 export interface ContactInquiry {
   'id' : bigint,
   'name' : string,
   'email' : string,
   'message' : string,
   'timestamp' : Time,
+}
+export interface SiteContent {
+  'businessHours' : BusinessHours,
+  'aboutHeading' : string,
+  'heroHeading' : string,
+  'servicesDescription' : string,
+  'servicesHeading' : string,
+  'contactSubheading' : string,
+  'contactHeading' : string,
+  'heroSubheading' : string,
+  'aboutDescription' : string,
 }
 export type Time = bigint;
 export interface UserProfile { 'name' : string }
@@ -30,9 +42,11 @@ export interface _SERVICE {
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getInquiry' : ActorMethod<[bigint], [] | [ContactInquiry]>,
+  'getSiteContent' : ActorMethod<[], SiteContent>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'updateSiteContent' : ActorMethod<[SiteContent], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

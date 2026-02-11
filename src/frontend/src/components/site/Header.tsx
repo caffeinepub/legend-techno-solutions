@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -10,8 +10,11 @@ export default function Header() {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
+    } else {
+      console.warn(`Section with id "${sectionId}" not found`);
     }
+    // Always close the mobile sheet after clicking
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -53,7 +56,7 @@ export default function Header() {
           ))}
           <Button
             onClick={() => scrollToSection('contact')}
-            className="bg-amber-600 hover:bg-amber-700 text-white"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground"
           >
             Get a Quote
           </Button>
@@ -72,14 +75,14 @@ export default function Header() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left text-lg font-medium text-foreground hover:text-amber-600 transition-colors"
+                  className="text-left text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
                   {item.label}
                 </button>
               ))}
               <Button
                 onClick={() => scrollToSection('contact')}
-                className="bg-amber-600 hover:bg-amber-700 text-white w-full"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground w-full"
               >
                 Get a Quote
               </Button>

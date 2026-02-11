@@ -7,16 +7,22 @@ import AboutSection from './components/sections/AboutSection';
 import ContactSection from './components/sections/ContactSection';
 import AdminPage from './pages/AdminPage';
 import { Toaster } from '@/components/ui/sonner';
+import { useGetSiteContent } from './hooks/useSiteContent';
 
 function App() {
   const [currentView, setCurrentView] = useState<'home' | 'admin'>('home');
+  const { data: siteContent } = useGetSiteContent();
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash === '/admin') {
+      const hash = window.location.hash.slice(1); // Remove leading #
+      // Normalize hash: remove trailing slashes and handle variations
+      const normalizedHash = hash.replace(/\/+$/, '');
+      
+      if (normalizedHash === '/admin') {
         setCurrentView('admin');
       } else {
+        // Any other hash (including empty, unknown routes) goes to home
         setCurrentView('home');
       }
     };
@@ -39,10 +45,23 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        <HeroSection />
-        <ServicesSection />
-        <AboutSection />
-        <ContactSection />
+        <HeroSection
+          heading={siteContent?.heroHeading}
+          subheading={siteContent?.heroSubheading}
+        />
+        <ServicesSection
+          heading={siteContent?.servicesHeading}
+          description={siteContent?.servicesDescription}
+        />
+        <AboutSection
+          heading={siteContent?.aboutHeading}
+          description={siteContent?.aboutDescription}
+        />
+        <ContactSection
+          heading={siteContent?.contactHeading}
+          subheading={siteContent?.contactSubheading}
+          businessHours={siteContent?.businessHours}
+        />
       </main>
       <Footer />
       <Toaster />

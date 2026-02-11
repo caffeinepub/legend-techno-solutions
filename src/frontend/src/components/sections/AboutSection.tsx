@@ -1,7 +1,12 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle2, Clock, Shield, Wrench, Users, Award } from 'lucide-react';
 
-export default function AboutSection() {
+interface AboutSectionProps {
+  heading?: string;
+  description?: string;
+}
+
+export default function AboutSection({ heading, description }: AboutSectionProps) {
   const features = [
     {
       icon: Clock,
@@ -36,21 +41,29 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20">
-      <div className="container">
+    <section
+      id="about"
+      className="relative py-20 overflow-hidden bg-background"
+      style={{
+        backgroundImage: 'url(/assets/generated/legend-techno-hero-bg-v2.dim_1600x900.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/85 to-background/75" />
+      
+      <div className="container relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              About Legend Techno Solutions
+              {heading || 'About Legend Techno Solutions'}
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              We are a trusted technology services provider specializing in computer repair, laptop
-              maintenance, CCTV security systems, and networking solutions. Our mission is to deliver
-              reliable, professional service that keeps your technology running at its best.
+              {description || 'We are a trusted technology services provider specializing in computer repair, laptop maintenance, CCTV security systems, and networking solutions. Our mission is to deliver reliable, professional service that keeps your technology running at its best.'}
             </p>
           </div>
 
-          <Card className="mb-8 border-amber-600/20 bg-amber-600/5">
+          <Card className="mb-8 border-primary/20 bg-primary/5">
             <CardContent className="pt-6">
               <p className="text-center text-lg text-foreground">
                 With a commitment to quality and customer satisfaction, we serve residential and
@@ -67,11 +80,11 @@ export default function AboutSection() {
               return (
                 <div
                   key={index}
-                  className="flex gap-4 p-4 rounded-lg border border-border hover:border-amber-600/50 transition-colors"
+                  className="flex gap-4 p-4 rounded-lg border border-border hover:border-primary/50 transition-colors"
                 >
                   <div className="flex-shrink-0">
-                    <div className="p-2 rounded-lg bg-amber-600/10">
-                      <Icon className="h-5 w-5 text-amber-600" />
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <Icon className="h-5 w-5 text-primary" />
                     </div>
                   </div>
                   <div>

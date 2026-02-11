@@ -1,64 +1,76 @@
 {
   "kind": "build_request",
-  "title": "Use uploaded image as new logo and update contact phone number to 7019071669",
+  "title": "Fix website stability and correct default site content",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-12",
-      "text": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+      "id": "REQ-27",
+      "text": "Perform a full production smoke-test of the marketing site (Home view) and Admin view and fix any runtime errors, broken navigation, or broken section scrolling so the website works reliably end-to-end.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4",
-          "msg-6"
+          "msg-3"
         ],
         "quotes": [
-          "update this image for logo",
-          "Yes, use this as the new logo OR"
+          "fix the website"
         ]
       },
       "acceptanceCriteria": [
-        "A new logo image file exists under frontend/public/assets/generated (or equivalent public static assets location) derived from the uploaded image.",
-        "frontend/src/components/site/Header.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
-        "frontend/src/components/site/Footer.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
-        "The logo renders correctly (not stretched) in both header and footer on mobile and desktop."
+        "Loading the site shows the Home view without uncaught exceptions in the browser console.",
+        "Header navigation links scroll to the correct sections (Hero/Services/About/Contact) on the Home view.",
+        "Switching to the Admin view via hash route (/#/admin) renders the AdminPage without runtime errors and can return back to Home view.",
+        "No broken links or obviously broken UI states are present during normal navigation."
       ]
     },
     {
-      "id": "REQ-13",
-      "text": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
-      "target": "frontend",
+      "id": "REQ-28",
+      "text": "Update the Motoko backend default `SiteContent` values so that a fresh deploy (or empty state) shows Legend Techno Solutions-specific copy (hero/services/about/contact + business hours) instead of generic business placeholder text.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-8",
-          "msg-10"
+          "msg-3"
         ],
         "quotes": [
-          "and contact number 7019071669",
-          "Yes, update the site with 7019071669"
+          "fix the website"
         ]
       },
       "acceptanceCriteria": [
-        "The phone number displayed in frontend/src/components/sections/ContactSection.tsx is updated from the placeholder number to 7019071669.",
-        "No other UI location continues to display the old placeholder phone number (+1 (555) 123-4567).",
-        "The phone number is formatted consistently (plain digits or a readable format) and is legible in both light and dark themes."
+        "`backend/main.mo` `defaultSiteContent()` returns headings/subheadings/descriptions and business hours that match the Legend Techno Solutions website domain (computer/laptop repair, CCTV installation, networking).",
+        "On a clean state (no admin edits applied), `getSiteContent()` returns the updated Legend Techno Solutions defaults.",
+        "Frontend Home view shows Legend Techno Solutions-appropriate default copy when backend content has not been customized by an admin."
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "text": "Ensure the application build and deploy pipeline completes successfully for both frontend and backend, and fix any configuration/build issues that prevent successful deployment.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "fix the website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A full project build completes without errors.",
+        "A deployment completes successfully and the deployed site loads in a browser.",
+        "Core flows function on the deployed site: Home view renders, Contact form is interactive (when actor is ready), and Admin view route loads."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui (Shadcn UI sources must be composed, not modified).",
-    "Do not modify immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+    "Backend must remain a single Motoko actor in `backend/main.mo`; create `backend/migration.mo` only if a state migration is actually required.",
+    "Do not edit files under `frontend/src/components/ui` or any other frontend immutable paths listed in SYSTEM_CONTEXT; compose them instead.",
+    "Use English for all user-facing text."
   ],
   "nonGoals": [
-    "Do not change backend (Motoko) functionality or inquiry storage APIs for this request.",
-    "Do not redesign the overall site layout/theme beyond what is necessary to swap the logo and update the phone number.",
-    "Do not add third-party authentication providers (only Internet Identity is supported)."
+    "Redesigning the website theme or changing marketing content beyond correcting the backend default SiteContent to match the existing Legend Techno Solutions domain.",
+    "Adding new pages, new service categories, or new backend features unrelated to fixing stability/build/deploy and correcting default content."
   ],
   "imageRequirements": {
     "required": [],
-    "edits": [
-      "Replace the existing logo image with the uploaded logo artwork (legend-techno-logo-v2.dim_512x512.png > legend-techno-logo-uploaded.dim_512x512.png)"
-    ]
+    "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],

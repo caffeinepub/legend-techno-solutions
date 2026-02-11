@@ -1,52 +1,69 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T16:28:34.483Z",
+  "generatedAt": "2026-02-11T18:30:16.680Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
+    "total": 3,
     "implemented": 2,
     "items": [
       {
-        "id": "REQ-12",
-        "summary": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+        "id": "REQ-27",
+        "summary": "Perform a full production smoke-test of the marketing site (Home view) and Admin view and fix any runtime errors, broken navigation, or broken section scrolling so the website works reliably end-to-end.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+          "frontend/src/App.tsx",
+          "frontend/src/hooks/useSiteContent.ts",
           "frontend/src/components/site/Header.tsx",
           "frontend/src/components/site/Footer.tsx"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+          "frontend/src/App.tsx",
+          "frontend/src/hooks/useSiteContent.ts",
           "frontend/src/components/site/Header.tsx",
           "frontend/src/components/site/Footer.tsx"
         ]
       },
       {
-        "id": "REQ-13",
-        "summary": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
+        "id": "REQ-28",
+        "summary": "Update the Motoko backend default `SiteContent` values so that a fresh deploy (or empty state) shows Legend Techno Solutions-specific copy (hero/services/about/contact + business hours) instead of generic business placeholder text.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-29",
+        "summary": "Ensure the application build and deploy pipeline completes successfully for both frontend and backend, and fix any configuration/build issues that prevent successful deployment.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/sections/ContactSection.tsx"
+          "frontend/src/components/sections/ServicesSection.tsx",
+          "frontend/src/components/sections/ContactSection.tsx",
+          "frontend/src/hooks/useQueries.ts"
         ],
         "matchedFiles": [
-          "frontend/src/components/sections/ContactSection.tsx"
+          "frontend/src/components/sections/ServicesSection.tsx",
+          "frontend/src/components/sections/ContactSection.tsx",
+          "frontend/src/hooks/useQueries.ts"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
+    "frontend/src/App.tsx",
     "frontend/src/components/sections/ContactSection.tsx",
+    "frontend/src/components/sections/ServicesSection.tsx",
     "frontend/src/components/site/Footer.tsx",
     "frontend/src/components/site/Header.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useSiteContent.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

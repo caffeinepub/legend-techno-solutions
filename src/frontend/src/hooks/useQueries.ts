@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
-import { toast } from 'sonner';
 import type { ContactInquiry } from '../backend';
 
 interface CreateInquiryParams {
@@ -10,25 +9,22 @@ interface CreateInquiryParams {
 }
 
 export function useCreateInquiry() {
-  const { actor } = useActor();
+  const { actor, isFetching } = useActor();
   const queryClient = useQueryClient();
+  const isReady = !isFetching && !!actor;
 
   return useMutation({
     mutationFn: async (params: CreateInquiryParams) => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor || !isReady) {
+        throw new Error('System is not ready. Please wait a moment and try again.');
+      }
       await actor.createInquiry(params.name, params.email, params.message);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['inquiries'] });
-      toast.success('Message sent successfully!', {
-        description: "We'll get back to you within 24 hours.",
-      });
     },
     onError: (error) => {
       console.error('Failed to create inquiry:', error);
-      toast.error('Failed to send message', {
-        description: 'Please try again or contact us directly.',
-      });
     },
   });
 }

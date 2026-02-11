@@ -7,6 +7,8 @@ export default function Footer() {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn(`Section with id "${sectionId}" not found`);
     }
   };
 
@@ -37,16 +39,38 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {['Home', 'Services', 'About', 'Contact'].map((item) => (
-                <li key={item}>
-                  <button
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-sm text-muted-foreground hover:text-amber-600 transition-colors"
-                  >
-                    {item}
-                  </button>
-                </li>
-              ))}
+              <li>
+                <button
+                  onClick={() => scrollToSection('hero')}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Services
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Contact
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -66,21 +90,21 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Get Started</h3>
             <Button
               onClick={() => scrollToSection('contact')}
-              className="bg-amber-600 hover:bg-amber-700 text-white w-full mb-4"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mb-4"
             >
               Request Service
             </Button>
             <div className="flex gap-3">
-              <a href="#" className="text-muted-foreground hover:text-amber-600 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiFacebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-amber-600 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiX className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-amber-600 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiLinkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-amber-600 transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiInstagram className="h-5 w-5" />
               </a>
             </div>
@@ -92,12 +116,12 @@ export default function Footer() {
             © {new Date().getFullYear()} Legend Techno Solutions. All rights reserved.
           </p>
           <p className="mt-2 flex items-center justify-center gap-1">
-            Built with <Heart className="h-4 w-4 text-amber-600 fill-amber-600" /> using{' '}
+            Built with <Heart className="h-4 w-4 text-primary fill-primary" /> using{' '}
             <a
               href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-amber-600 hover:text-amber-700 font-medium"
+              className="text-primary hover:text-primary/80 font-medium"
             >
               caffeine.ai
             </a>

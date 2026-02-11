@@ -1,48 +1,63 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Swap site logo to uploaded asset and update contact phone number",
+  "title": "Stabilize marketing + admin views and ensure frontend build reliability",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Add uploaded logo as a static asset and update header/footer to use it with correct, non-stretched rendering.",
+      "id": "REQ-27",
+      "summary": "Fix runtime errors and broken navigation/scrolling across Home and Admin views for reliable end-to-end usage.",
       "acceptanceCriteria": [
-        "A new logo image file exists under frontend/public/assets/generated (or equivalent public static assets location) derived from the uploaded image.",
-        "frontend/src/components/site/Header.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
-        "frontend/src/components/site/Footer.tsx no longer references /assets/generated/legend-techno-logo-v2.dim_512x512.png and instead references the new uploaded-logo asset.",
-        "The logo renders correctly (not stretched) in both header and footer on mobile and desktop."
+        "Loading the site shows the Home view without uncaught exceptions in the browser console.",
+        "Header navigation links scroll to the correct sections (Hero/Services/About/Contact) on the Home view.",
+        "Switching to the Admin view via hash route (/#/admin) renders the AdminPage without runtime errors and can return back to Home view.",
+        "No broken links or obviously broken UI states are present during normal navigation."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the uploaded logo image as a public static asset at this exact path/filename to replace the previously generated logo."
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Harden hash-route handling for switching between home and admin (normalize hashes like '#/admin', '#/admin/', and unknown hashes) and ensure view switching never throws during navigation."
+        },
+        {
+          "path": "frontend/src/hooks/useSiteContent.ts",
+          "operation": "modify",
+          "description": "Ensure Home view always has safe SiteContent data (including before the actor is ready) by adjusting query enablement/fallback behavior to prevent undefined content and reduce console/runtime errors."
         },
         {
           "path": "frontend/src/components/site/Header.tsx",
           "operation": "modify",
-          "description": "Update the logo <img> src to reference frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png and adjust image sizing classes (e.g., object-fit/contain with fixed height) so the logo is not stretched across mobile and desktop."
+          "description": "Stabilize section scrolling behavior (e.g., guard against missing targets and close mobile sheet consistently) so Hero/Services/About/Contact navigation scrolls reliably. Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/components/site/Footer.tsx",
           "operation": "modify",
-          "description": "Update the logo <img> src to reference frontend/public/assets/generated/legend-techno-logo-uploaded.dim_512x512.png and adjust image sizing classes (e.g., object-fit/contain with fixed height) so the logo is not stretched across mobile and desktop."
+          "description": "Fix Quick Links section scrolling so 'Home' scrolls to the Hero section (id 'hero') rather than a non-existent 'home' id, and ensure other links match existing section ids. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-13",
-      "summary": "Update all displayed contact phone numbers in the UI to 7019071669, including the Contact Information card.",
+      "id": "REQ-29",
+      "summary": "Resolve frontend build/config issues so the project builds and deploys successfully and core flows work on the deployed site.",
       "acceptanceCriteria": [
-        "The phone number displayed in frontend/src/components/sections/ContactSection.tsx is updated from the placeholder number to 7019071669.",
-        "No other UI location continues to display the old placeholder phone number (+1 (555) 123-4567).",
-        "The phone number is formatted consistently (plain digits or a readable format) and is legible in both light and dark themes."
+        "A full project build completes without errors.",
+        "A deployment completes successfully and the deployed site loads in a browser.",
+        "Core flows function on the deployed site: Home view renders, Contact form is interactive (when actor is ready), and Admin view route loads."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/components/sections/ServicesSection.tsx",
+          "operation": "modify",
+          "description": "Fix TypeScript/React typing issues that can break the production build (e.g., remove reliance on the global React namespace for types) while keeping the UI behavior unchanged. Verify the component's usage instructions before implementing."
+        },
+        {
           "path": "frontend/src/components/sections/ContactSection.tsx",
           "operation": "modify",
-          "description": "Replace the placeholder phone number text (+1 (555) 123-4567) with 7019071669 in the Contact Information card, keeping styling legible in light/dark themes."
+          "description": "Fix TypeScript typing usage for form event handling (avoid 'React.FormEvent' without importing the React type) to prevent build failures, keeping form UX unchanged. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Eliminate build-breaking lint/TypeScript issues (such as unused imports) and improve error visibility for inquiry creation without changing backend interactions."
         }
       ]
     }

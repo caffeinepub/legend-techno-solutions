@@ -22,6 +22,21 @@ export const ContactInquiry = IDL.Record({
   'timestamp' : Time,
 });
 export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+export const BusinessHours = IDL.Record({
+  'hours' : IDL.Text,
+  'days' : IDL.Text,
+});
+export const SiteContent = IDL.Record({
+  'businessHours' : BusinessHours,
+  'aboutHeading' : IDL.Text,
+  'heroHeading' : IDL.Text,
+  'servicesDescription' : IDL.Text,
+  'servicesHeading' : IDL.Text,
+  'contactSubheading' : IDL.Text,
+  'contactHeading' : IDL.Text,
+  'heroSubheading' : IDL.Text,
+  'aboutDescription' : IDL.Text,
+});
 
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
@@ -31,6 +46,7 @@ export const idlService = IDL.Service({
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getInquiry' : IDL.Func([IDL.Nat], [IDL.Opt(ContactInquiry)], ['query']),
+  'getSiteContent' : IDL.Func([], [SiteContent], ['query']),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
@@ -38,6 +54,7 @@ export const idlService = IDL.Service({
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'updateSiteContent' : IDL.Func([SiteContent], [], []),
 });
 
 export const idlInitArgs = [];
@@ -57,6 +74,18 @@ export const idlFactory = ({ IDL }) => {
     'timestamp' : Time,
   });
   const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  const BusinessHours = IDL.Record({ 'hours' : IDL.Text, 'days' : IDL.Text });
+  const SiteContent = IDL.Record({
+    'businessHours' : BusinessHours,
+    'aboutHeading' : IDL.Text,
+    'heroHeading' : IDL.Text,
+    'servicesDescription' : IDL.Text,
+    'servicesHeading' : IDL.Text,
+    'contactSubheading' : IDL.Text,
+    'contactHeading' : IDL.Text,
+    'heroSubheading' : IDL.Text,
+    'aboutDescription' : IDL.Text,
+  });
   
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
@@ -66,6 +95,7 @@ export const idlFactory = ({ IDL }) => {
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getInquiry' : IDL.Func([IDL.Nat], [IDL.Opt(ContactInquiry)], ['query']),
+    'getSiteContent' : IDL.Func([], [SiteContent], ['query']),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],
@@ -73,6 +103,7 @@ export const idlFactory = ({ IDL }) => {
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'updateSiteContent' : IDL.Func([SiteContent], [], []),
   });
 };
 

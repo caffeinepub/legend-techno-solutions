@@ -1,7 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { Wrench, Phone, Mail } from 'lucide-react';
+import { Wrench, Phone } from 'lucide-react';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  heading?: string;
+  subheading?: string;
+}
+
+export default function HeroSection({ heading, subheading }: HeroSectionProps) {
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -14,7 +19,7 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-[600px] flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: 'url(/assets/generated/legend-techno-hero-bg.dim_1600x900.png)',
+        backgroundImage: 'url(/assets/generated/legend-techno-hero-bg-v2.dim_1600x900.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -23,26 +28,24 @@ export default function HeroSection() {
       
       <div className="container relative z-10 py-20">
         <div className="max-w-3xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-600/10 border border-amber-600/20">
-            <Wrench className="h-4 w-4 text-amber-600" />
-            <span className="text-sm font-medium text-amber-600">Professional Tech Services</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+            <Wrench className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-primary">Professional Tech Services</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-            Expert Solutions for All Your{' '}
-            <span className="text-amber-600">Tech Needs</span>
+            {heading || 'Expert Solutions for All Your Tech Needs'}
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            From computer repairs to CCTV installations, we provide reliable, professional services
-            to keep your technology running smoothly.
+            {subheading || 'From computer repairs to CCTV installations, we provide reliable, professional services to keep your technology running smoothly.'}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               onClick={scrollToContact}
               size="lg"
-              className="bg-amber-600 hover:bg-amber-700 text-white text-lg px-8"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8"
             >
               Get a Free Quote
             </Button>
@@ -50,7 +53,7 @@ export default function HeroSection() {
               onClick={scrollToContact}
               size="lg"
               variant="outline"
-              className="text-lg px-8 border-amber-600/30 hover:bg-amber-600/10"
+              className="text-lg px-8 border-primary/30 hover:bg-primary/10"
             >
               <Phone className="h-5 w-5 mr-2" />
               Contact Us
@@ -59,15 +62,15 @@ export default function HeroSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
             <div className="flex flex-col items-center gap-2">
-              <div className="text-3xl font-bold text-amber-600">10+</div>
+              <div className="text-3xl font-bold text-primary">10+</div>
               <div className="text-sm text-muted-foreground">Years Experience</div>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="text-3xl font-bold text-amber-600">1000+</div>
+              <div className="text-3xl font-bold text-primary">1000+</div>
               <div className="text-sm text-muted-foreground">Happy Clients</div>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="text-3xl font-bold text-amber-600">24/7</div>
+              <div className="text-3xl font-bold text-primary">24/7</div>
               <div className="text-sm text-muted-foreground">Support Available</div>
             </div>
           </div>

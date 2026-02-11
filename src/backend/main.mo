@@ -91,4 +91,52 @@ actor {
     };
     inquiries.get(id);
   };
+
+  // Data-Driven Site Content Management
+  public type BusinessHours = {
+    days : Text;
+    hours : Text;
+  };
+
+  public type SiteContent = {
+    heroHeading : Text;
+    heroSubheading : Text;
+    servicesHeading : Text;
+    servicesDescription : Text;
+    aboutHeading : Text;
+    aboutDescription : Text;
+    contactHeading : Text;
+    contactSubheading : Text;
+    businessHours : BusinessHours;
+  };
+
+  func defaultSiteContent() : SiteContent {
+    {
+      heroHeading = "Legend Techno Solutions";
+      heroSubheading = "Empowering Your Digital Future";
+      servicesHeading = "Our Services";
+      servicesDescription = "We offer a range of services including digital transformation consulting, cloud solutions, and IT support.";
+      aboutHeading = "About Legend Techno Solutions";
+      aboutDescription = "Legend Techno Solutions is dedicated to helping businesses achieve their digital goals with innovative and reliable technology solutions.";
+      contactHeading = "Get in Touch";
+      contactSubheading = "Contact us to discuss how we can help your business thrive in the digital age.";
+      businessHours = {
+        days = "Monday - Friday";
+        hours = "8:00 AM - 6:00 PM";
+      };
+    };
+  };
+
+  var siteContent : SiteContent = defaultSiteContent();
+
+  public query ({ caller }) func getSiteContent() : async SiteContent {
+    siteContent;
+  };
+
+  public shared ({ caller }) func updateSiteContent(newContent : SiteContent) : async () {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can update site content");
+    };
+    siteContent := newContent;
+  };
 };

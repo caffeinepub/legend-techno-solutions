@@ -55,19 +55,6 @@ export default {
                     3: 'oklch(var(--chart-3))',
                     4: 'oklch(var(--chart-4))',
                     5: 'oklch(var(--chart-5))'
-                },
-                amber: {
-                    50: 'oklch(0.97 0.02 85)',
-                    100: 'oklch(0.94 0.05 85)',
-                    200: 'oklch(0.88 0.10 85)',
-                    300: 'oklch(0.81 0.15 80)',
-                    400: 'oklch(0.74 0.18 70)',
-                    500: 'oklch(0.68 0.18 60)',
-                    600: 'oklch(0.60 0.18 50)',
-                    700: 'oklch(0.50 0.16 45)',
-                    800: 'oklch(0.42 0.14 40)',
-                    900: 'oklch(0.35 0.12 35)',
-                    950: 'oklch(0.25 0.08 30)'
                 }
             },
             borderRadius: {
@@ -88,7 +75,7 @@ export default {
             },
             boxShadow: {
                 xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
-                'glow-amber': '0 0 20px rgba(251, 191, 36, 0.3)'
+                'glow-primary': '0 0 20px oklch(var(--primary) / 0.3)'
             },
             keyframes: {
                 'accordion-down': {

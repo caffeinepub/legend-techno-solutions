@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Loader2, ArrowLeft, Search } from 'lucide-react';
 import LoginButton from '../components/auth/LoginButton';
 import AccessDeniedScreen from '../components/auth/AccessDeniedScreen';
+import SiteContentEditor from '../components/admin/SiteContentEditor';
 import { useActor } from '../hooks/useActor';
 import { useQuery } from '@tanstack/react-query';
 
@@ -33,7 +34,12 @@ export default function AdminPage() {
   const filteredInquiries = useMemo(() => {
     if (!inquiries) return [];
 
-    return inquiries.filter((inquiry) => {
+    // Sort by timestamp descending (most recent first)
+    const sorted = [...inquiries].sort((a, b) => {
+      return Number(b.timestamp - a.timestamp);
+    });
+
+    return sorted.filter((inquiry) => {
       const serviceType = parseServiceType(inquiry.message);
       const matchesService = serviceFilter === 'all' || serviceType === serviceFilter;
       
@@ -93,7 +99,11 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <main className="container py-8">
+      <main className="container py-8 space-y-8">
+        {/* Site Content Editor */}
+        <SiteContentEditor />
+
+        {/* Contact Inquiries */}
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl">Contact Inquiries</CardTitle>

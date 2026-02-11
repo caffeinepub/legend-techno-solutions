@@ -90,6 +90,17 @@ export class ExternalBlob {
     }
 }
 export type Time = bigint;
+export interface SiteContent {
+    businessHours: BusinessHours;
+    aboutHeading: string;
+    heroHeading: string;
+    servicesDescription: string;
+    servicesHeading: string;
+    contactSubheading: string;
+    contactHeading: string;
+    heroSubheading: string;
+    aboutDescription: string;
+}
 export interface ContactInquiry {
     id: bigint;
     name: string;
@@ -99,6 +110,10 @@ export interface ContactInquiry {
 }
 export interface UserProfile {
     name: string;
+}
+export interface BusinessHours {
+    hours: string;
+    days: string;
 }
 export enum UserRole {
     admin = "admin",
@@ -113,9 +128,11 @@ export interface backendInterface {
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getInquiry(id: bigint): Promise<ContactInquiry | null>;
+    getSiteContent(): Promise<SiteContent>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    updateSiteContent(newContent: SiteContent): Promise<void>;
 }
 import type { ContactInquiry as _ContactInquiry, UserProfile as _UserProfile, UserRole as _UserRole } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
@@ -218,6 +235,20 @@ export class Backend implements backendInterface {
             return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
         }
     }
+    async getSiteContent(): Promise<SiteContent> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getSiteContent();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getSiteContent();
+            return result;
+        }
+    }
     async getUserProfile(arg0: Principal): Promise<UserProfile | null> {
         if (this.processError) {
             try {
@@ -257,6 +288,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.saveCallerUserProfile(arg0);
+            return result;
+        }
+    }
+    async updateSiteContent(arg0: SiteContent): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateSiteContent(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateSiteContent(arg0);
             return result;
         }
     }

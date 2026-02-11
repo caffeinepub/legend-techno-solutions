@@ -8,6 +8,17 @@ export interface None {
 }
 export type Option<T> = Some<T> | None;
 export type Time = bigint;
+export interface SiteContent {
+    businessHours: BusinessHours;
+    aboutHeading: string;
+    heroHeading: string;
+    servicesDescription: string;
+    servicesHeading: string;
+    contactSubheading: string;
+    contactHeading: string;
+    heroSubheading: string;
+    aboutDescription: string;
+}
 export interface ContactInquiry {
     id: bigint;
     name: string;
@@ -17,6 +28,10 @@ export interface ContactInquiry {
 }
 export interface UserProfile {
     name: string;
+}
+export interface BusinessHours {
+    hours: string;
+    days: string;
 }
 export enum UserRole {
     admin = "admin",
@@ -30,7 +45,9 @@ export interface backendInterface {
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getInquiry(id: bigint): Promise<ContactInquiry | null>;
+    getSiteContent(): Promise<SiteContent>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    updateSiteContent(newContent: SiteContent): Promise<void>;
 }

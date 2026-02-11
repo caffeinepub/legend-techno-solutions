@@ -2,11 +2,13 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-the-user-uploaded-logo-image-to-the-frontend-as-a-static-asset-and-update-all-logo-usages-so-the-site-header-and-footer-display-the-new-uploaded-logo-instead-of-the-current-generated-logo-asset",
-      "featureTitle": "Add the user-uploaded logo image to the frontend as a static asset and update all logo usages so the site header and footer display the new uploaded logo instead of the current generated logo asset.",
+      "featureId": "feature-perform-a-full-production-smoke-test-of-the-marketing-site-home-view-and-admin-view-and-fix-any-runtime-errors-broken-navigation-or-broken-section-scrolling-so-the-website-works-reliably-end-to-end",
+      "featureTitle": "Perform a full production smoke-test of the marketing site (Home view) and Admin view and fix any runtime errors, broken navigation, or broken section scrolling so the website works reliably end-to-end.",
       "files": [
+        "frontend/src/App.tsx",
         "frontend/src/components/site/Footer.tsx",
-        "frontend/src/components/site/Header.tsx"
+        "frontend/src/components/site/Header.tsx",
+        "frontend/src/hooks/useSiteContent.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -17,15 +19,17 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-12"
+        "REQ-27"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-site-s-displayed-contact-phone-number-to-7019071669-wherever-a-phone-number-is-shown-in-the-ui-including-the-contact-section-s-contact-information-card",
-      "featureTitle": "Update the site’s displayed contact phone number to 7019071669 wherever a phone number is shown in the UI (including the Contact section’s Contact Information card).",
+      "featureId": "feature-ensure-the-application-build-and-deploy-pipeline-completes-successfully-for-both-frontend-and-backend-and-fix-any-configuration-build-issues-that-prevent-successful-deployment",
+      "featureTitle": "Ensure the application build and deploy pipeline completes successfully for both frontend and backend, and fix any configuration/build issues that prevent successful deployment.",
       "files": [
-        "frontend/src/components/sections/ContactSection.tsx"
+        "frontend/src/components/sections/ContactSection.tsx",
+        "frontend/src/components/sections/ServicesSection.tsx",
+        "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -36,7 +40,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-13"
+        "REQ-29"
       ],
       "confidence": "high"
     }
