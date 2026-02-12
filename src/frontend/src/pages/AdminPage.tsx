@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
-import { useGetAllInquiries, parseServiceType, parsePreferredContact, parsePhone, parseActualMessage } from '../hooks/useQueries';
+import { useGetAllInquiries, useGetAllRatings, parseServiceType, parsePreferredContact, parsePhone, parseActualMessage } from '../hooks/useQueries';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, Search } from 'lucide-react';
+import { Loader2, ArrowLeft, Search, Star } from 'lucide-react';
 import LoginButton from '../components/auth/LoginButton';
 import AccessDeniedScreen from '../components/auth/AccessDeniedScreen';
 import SiteContentEditor from '../components/admin/SiteContentEditor';
@@ -30,6 +30,7 @@ export default function AdminPage() {
   });
 
   const { data: inquiries, isLoading: inquiriesLoading } = useGetAllInquiries();
+  const { data: ratings, isLoading: ratingsLoading } = useGetAllRatings();
 
   const filteredInquiries = useMemo(() => {
     if (!inquiries) return [];
@@ -60,8 +61,8 @@ export default function AdminPage() {
 
   if (isInitializing || actorFetching) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-amber-600" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -72,8 +73,8 @@ export default function AdminPage() {
 
   if (isAdminLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-amber-600" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -139,7 +140,7 @@ export default function AdminPage() {
 
             {inquiriesLoading ? (
               <div className="flex justify-center py-8">
-                <Loader2 className="h-8 w-8 animate-spin text-amber-600" />
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
             ) : filteredInquiries.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
@@ -195,6 +196,81 @@ export default function AdminPage() {
                           </TableCell>
                           <TableCell className="max-w-md">
                             <div className="text-sm line-clamp-3">{actualMessage}</div>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Website Ratings */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl">Website Ratings</CardTitle>
+            <CardDescription>
+              Customer feedback and ratings
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {ratingsLoading ? (
+              <div className="flex justify-center py-8">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            ) : !ratings || ratings.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                No ratings yet
+              </div>
+            ) : (
+              <div className="rounded-md border">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Date</TableHead>
+                      <TableHead>Rating</TableHead>
+                      <TableHead>Comment</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {ratings.map((rating) => {
+                      const date = new Date(Number(rating.timestamp) / 1000000);
+                      return (
+                        <TableRow key={rating.id.toString()}>
+                          <TableCell className="whitespace-nowrap">
+                            {date.toLocaleDateString()}
+                            <br />
+                            <span className="text-xs text-muted-foreground">
+                              {date.toLocaleTimeString()}
+                            </span>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-1">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <Star
+                                  key={star}
+                                  className={`h-4 w-4 ${
+                                    star <= Number(rating.rating)
+                                      ? 'fill-primary text-primary'
+                                      : 'text-muted-foreground'
+                                  }`}
+                                />
+                              ))}
+                              <span className="ml-2 text-sm font-medium">
+                                {rating.rating.toString()}/5
+                              </span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="max-w-md">
+                            {rating.comment ? (
+                              <div className="text-sm">{rating.comment}</div>
+                            ) : (
+                              <span className="text-sm text-muted-foreground italic">
+                                No comment
+                              </span>
+                            )}
                           </TableCell>
                         </TableRow>
                       );

@@ -137,7 +137,12 @@ ${formData.message}
                     <Phone className="h-5 w-5 text-primary mt-0.5" />
                     <div>
                       <div className="font-medium text-foreground">Phone</div>
-                      <div className="text-sm text-muted-foreground">{CONTACT_PHONE}</div>
+                      <a
+                        href={`tel:${CONTACT_PHONE}`}
+                        className="text-sm text-muted-foreground hover:text-primary hover:underline focus:text-primary focus:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded transition-colors"
+                      >
+                        {CONTACT_PHONE}
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

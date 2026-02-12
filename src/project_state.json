@@ -1,17 +1,20 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 23,
+  "projectStateVersion": 29,
   "summary": "Create an app/site for a computer & laptop repair plus CCTV/networking services company named \"Legend Techno Solutions\".",
   "architectural_notes": [
-    "Branding decision: use the uploaded dragon logo image as the new official Legend Techno Solutions logo (replace existing logo site-wide and align related branding assets as needed)."
+    "Branding decision: use the uploaded dragon logo image as the new official Legend Techno Solutions logo (replace existing logo site-wide and align related branding assets as needed).",
+    "Home page hero background should support a short looping video asset (optimize for performance and provide fallback for devices/browsers that can’t autoplay video)."
   ],
   "known_issues": [
     "Build/deployment process failed during app creation; user requested retry.",
     "Contact form submission is failing in production with error message: \"failed send message try again\" (backend/API not reachable or returning error).",
     "Services section images are not displaying (service category pictures missing).",
-    "User requested to \"fix the website\" (general fix request; specific failing areas not specified)."
+    "User requested to \"fix the website\" (general fix request; specific failing areas not specified).",
+    "Admin panel access shows \"You do not have permission\" / \"Access Denied\" for the user (likely not logged in with the owner Internet Identity used during site creation)."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Short looping laptop/motherboard repair video clip (legend-techno-hero-bg-video.dim_1600x900.mp4)",
   "existing_features": [
     {
       "id": "feature-create-a-responsive-marketing-website-for-legend-techno-solutions-focused-on-computer-repair-laptop-repair-cctv-installation-and-networking-services-with-clear-navigation-and-calls-to-action",
@@ -228,6 +231,62 @@
         "REQ-29"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-site-header-and-footer-logo-so-that-clicking-tapping-the-logo-opens-an-enlarged-view-modal-lightbox-of-the-same-logo-image-assets-generated-legend-techno-logo-uploaded-dim-512x512-png-and-allow-the-user-to-close-the-enlarged-view-via-a-visible-close-control-clicking-the-backdrop-or-pressing-escape",
+      "title": "Update the site header and footer logo so that clicking/tapping the logo opens an enlarged view (modal/lightbox) of the same logo image (`/assets/generated/legend-techno-logo-uploaded.dim_512x512.png`), and allow the user to close the enlarged view via a visible close control, clicking the backdrop, or pressing Escape.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-displayed-public-contact-phone-number-clickable-tappable-so-that-pressing-it-opens-the-device-dialer-using-a-tel-link-wherever-the-phone-number-is-shown-in-the-ui-at-minimum-in-the-contact-section-s-contact-information-card-use-the-existing-configured-number-from-frontend-src-config-contact-ts-and-keep-the-visual-style-consistent-with-surrounding-text-with-clear-hover-focus-keyboard-accessibility",
+      "title": "Make the displayed public contact phone number clickable/tappable so that pressing it opens the device dialer using a `tel:` link wherever the phone number is shown in the UI (at minimum in the Contact section’s “Contact Information” card). Use the existing configured number from `frontend/src/config/contact.ts` and keep the visual style consistent with surrounding text (with clear hover/focus/keyboard accessibility).",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-animated-short-laptop-motherboard-repairing-video-as-the-home-page-hero-background-rendered-behind-the-existing-hero-content-with-a-readable-overlay-the-video-must-autoplay-muted-loop-and-play-inline-on-mobile-and-it-must-gracefully-fall-back-e-g-to-the-existing-hero-background-image-if-the-video-cannot-be-loaded",
+      "title": "Add an animated short laptop/motherboard repairing video as the Home page Hero background, rendered behind the existing Hero content with a readable overlay. The video must autoplay (muted), loop, and play inline on mobile, and it must gracefully fall back (e.g., to the existing hero background image) if the video cannot be loaded.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-switch-the-site-to-use-a-dark-theme-by-default-across-the-marketing-pages-home-sections-and-admin-view-ensuring-text-borders-cards-and-ctas-have-sufficient-contrast-and-the-overall-look-is-consistently-dark",
+      "title": "Switch the site to use a dark theme by default across the marketing pages (Home sections) and Admin view, ensuring text, borders, cards, and CTAs have sufficient contrast and the overall look is consistently dark.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-cookie-consent-notice-banner-that-appears-on-the-site-until-the-user-accepts-and-optionally-declines-persist-the-choice-locally-so-the-banner-does-not-reappear-on-subsequent-visits-and-include-clear-english-user-facing-text",
+      "title": "Add a cookie consent/notice banner that appears on the site until the user accepts (and optionally declines). Persist the choice locally so the banner does not reappear on subsequent visits, and include clear English user-facing text.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-public-website-rating-feature-for-legend-techno-solutions-so-visitors-can-submit-a-rating-e-g-1-5-stars-and-an-optional-comment-and-display-recent-ratings-on-the-marketing-site-near-the-end-of-the-home-page-after-the-contact-section",
+      "title": "Add a public website rating feature for Legend Techno Solutions so visitors can submit a rating (e.g., 1–5 stars) and an optional comment, and display recent ratings on the marketing site near the end of the Home page (after the Contact section).",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-extend-the-admin-dashboard-to-allow-viewing-submitted-website-ratings-in-a-simple-table-list-most-recent-first-so-the-business-can-review-feedback",
+      "title": "Extend the Admin dashboard to allow viewing submitted website ratings in a simple table/list (most recent first) so the business can review feedback.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -299,6 +358,42 @@
       "reqIds": [
         "REQ-28"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Make the site logo clickable so that when the user clicks it, it opens in an enlarged view (e.g., modal/lightbox) for better visibility.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Make the displayed contact phone number clickable/tappable so that pressing it opens the device dial pad (tel: link) across the site (e.g., header/footer/contact section).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Add an animated short video (laptop/motherboard repairing) as the Home page hero background.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Switch the overall site theme to a dark theme (dark mode styling across pages/sections).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Add a cookie consent/notice banner to the site.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Add a website rating feature/page/section for Legend Techno Solutions (users can leave a rating).",
+      "reqIds": [],
       "status": "pending"
     }
   ],

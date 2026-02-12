@@ -1,13 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Make the marketing site and Admin view stable end-to-end, ensure builds/deploys succeed, and correct the backend’s default site content to Legend Techno Solutions-specific copy.
+**Goal:** Enhance the marketing site with a hero video background, dark theme by default, a cookie consent banner, and a public customer ratings feature (including admin review).
 
 **Planned changes:**
-- Smoke-test the Home view and Admin view in production-like conditions and fix any runtime errors, broken navigation, or broken section scrolling.
-- Verify header navigation scrolls to the correct Home sections (Hero/Services/About/Contact) and fix any mismatches.
-- Verify the /#/admin route renders without errors and supports returning back to Home; fix any routing/navigation issues.
-- Update Motoko backend `defaultSiteContent()` values so a fresh deploy/empty state uses Legend Techno Solutions-appropriate hero/services/about/contact copy and business hours (computer/laptop repair, CCTV installation, networking).
-- Fix any project configuration/build issues so frontend + backend build and deploy complete successfully, and validate core flows on the deployed site (Home renders, Contact form interactive when actor is ready, Admin route loads).
+- Add a looping, muted, autoplay hero background video behind existing Hero content with an overlay for readability and a graceful fallback to the current hero background image if the video fails to load.
+- Switch the app to dark theme by default across Home/marketing sections and the Admin page, ensuring readable contrast for text, borders, cards, tables, inputs, and CTAs.
+- Add an English cookie consent/notice banner with at least an “Accept” action (optionally “Decline”), persist the user’s choice locally, and keep it accessible.
+- Implement a public ratings feature: backend methods to create and list 1–5 star ratings (optional comment, timestamp, most-recent-first), and a new “Ratings” section after Contact to submit and view recent ratings (updates without full reload).
+- Extend the Admin dashboard to display submitted ratings in a simple most-recent-first table/list with an English empty state when none exist.
 
-**User-visible outcome:** The deployed site loads reliably without console errors, navigation/scrolling works across Home sections, the Admin view route works and can return to Home, and fresh deployments show Legend Techno Solutions-specific default content instead of generic placeholders.
+**User-visible outcome:** Visitors see a video hero background, the site loads in dark mode by default, a cookie notice appears until dismissed, and users can submit/view ratings on the Home page; admins can review ratings in the Admin dashboard.

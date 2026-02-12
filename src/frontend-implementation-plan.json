@@ -1,63 +1,134 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Stabilize marketing + admin views and ensure frontend build reliability",
+  "title": "Hero video background, default dark theme, cookie consent, and ratings UI",
   "requirements": [
     {
-      "id": "REQ-27",
-      "summary": "Fix runtime errors and broken navigation/scrolling across Home and Admin views for reliable end-to-end usage.",
+      "id": "REQ-32",
+      "summary": "Add a looping autoplay hero background video behind existing Hero content with overlay and graceful image fallback.",
       "acceptanceCriteria": [
-        "Loading the site shows the Home view without uncaught exceptions in the browser console.",
-        "Header navigation links scroll to the correct sections (Hero/Services/About/Contact) on the Home view.",
-        "Switching to the Admin view via hash route (/#/admin) renders the AdminPage without runtime errors and can return back to Home view.",
-        "No broken links or obviously broken UI states are present during normal navigation."
+        "A new video file exists under `frontend/public/assets/generated/` and is used by `frontend/src/components/sections/HeroSection.tsx` as the hero background.",
+        "Hero foreground content (headline, subheadline, buttons, stats) remains readable due to an overlay layer (e.g., gradient/tint) above the video.",
+        "The video is configured for background playback: `autoplay`, `muted`, `loop`, and `playsInline`.",
+        "If the video fails to load, the Hero shows a non-broken background (fallback to an image/color) without layout shifts."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Harden hash-route handling for switching between home and admin (normalize hashes like '#/admin', '#/admin/', and unknown hashes) and ensure view switching never throws during navigation."
+          "path": "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
+          "operation": "create",
+          "description": "Add the generated hero background video asset required for the Hero section."
         },
         {
-          "path": "frontend/src/hooks/useSiteContent.ts",
+          "path": "frontend/src/components/sections/HeroSection.tsx",
           "operation": "modify",
-          "description": "Ensure Home view always has safe SiteContent data (including before the actor is ready) by adjusting query enablement/fallback behavior to prevent undefined content and reduce console/runtime errors."
-        },
-        {
-          "path": "frontend/src/components/site/Header.tsx",
-          "operation": "modify",
-          "description": "Stabilize section scrolling behavior (e.g., guard against missing targets and close mobile sheet consistently) so Hero/Services/About/Contact navigation scrolls reliably. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/site/Footer.tsx",
-          "operation": "modify",
-          "description": "Fix Quick Links section scrolling so 'Home' scrolls to the Hero section (id 'hero') rather than a non-existent 'home' id, and ensure other links match existing section ids. Verify the component's usage instructions before implementing."
+          "description": "Render the hero background as an absolutely-positioned HTML5 video using `frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4` with `autoPlay`, `muted`, `loop`, and `playsInline`; keep existing hero background image as a CSS fallback when the video errors/does not load; ensure the existing overlay layer stays above the video for readability. Use existing shadcn-ui Button styling as-is (Verify the component's usage instructions before implementing)."
         }
       ]
     },
     {
-      "id": "REQ-29",
-      "summary": "Resolve frontend build/config issues so the project builds and deploys successfully and core flows work on the deployed site.",
+      "id": "REQ-33",
+      "summary": "Make dark mode the default theme across marketing pages and the admin view with consistent, high-contrast styling.",
       "acceptanceCriteria": [
-        "A full project build completes without errors.",
-        "A deployment completes successfully and the deployed site loads in a browser.",
-        "Core flows function on the deployed site: Home view renders, Contact form is interactive (when actor is ready), and Admin view route loads."
+        "On first load, the app renders in dark mode by default (the `dark` class is applied at the document level, e.g., via `frontend/index.html`).",
+        "All main sections (Header, Hero, Services, About, Contact, Footer) render with dark backgrounds and readable text using existing theme tokens in `frontend/src/index.css` (no unreadable low-contrast areas).",
+        "Admin view (`/#/admin`) also renders correctly in dark mode with readable tables, inputs, and cards."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/sections/ServicesSection.tsx",
+          "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Fix TypeScript/React typing issues that can break the production build (e.g., remove reliance on the global React namespace for types) while keeping the UI behavior unchanged. Verify the component's usage instructions before implementing."
+          "description": "Apply dark theme by default by adding the `dark` class at the document level (e.g., on the `<html>` element) so Tailwind dark variants and `frontend/src/index.css` dark tokens are active on first paint."
         },
         {
-          "path": "frontend/src/components/sections/ContactSection.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Fix TypeScript typing usage for form event handling (avoid 'React.FormEvent' without importing the React type) to prevent build failures, keeping form UX unchanged. Verify the component's usage instructions before implementing."
+          "description": "Ensure global base styles support default dark mode cleanly (e.g., align body/background tokens and optional `color-scheme: dark`), and adjust any theme token values only if needed to maintain sufficient contrast across sections and Admin UI."
         },
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Audit and adjust Admin dashboard styling to ensure tables, cards, and inputs remain readable in dark mode using existing design tokens and shadcn-ui components (Verify the component's usage instructions before implementing). Keep existing authorization-gated access patterns intact (authorization component; Verify the component's usage instructions before implementing)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "summary": "Add an accessible cookie consent banner with persisted local choice (accept and optional decline).",
+      "acceptanceCriteria": [
+        "A cookie notice banner is visible on the Home view until the user makes a choice.",
+        "The banner includes at minimum an “Accept” action; after accepting, the banner is dismissed and does not reappear on refresh (preference persisted in `localStorage` or equivalent).",
+        "Banner text is in English and clearly indicates that the site uses cookies/local storage for basic functionality.",
+        "The banner is accessible (keyboard reachable actions, visible focus state) and does not block critical navigation once dismissed."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/site/CookieConsentBanner.tsx",
+          "operation": "create",
+          "description": "Create a cookie/local storage consent banner component that reads/writes a persisted choice (e.g., `localStorage`), shows clear English notice text, provides at least an Accept action (and optional Decline), and is accessible (focusable buttons, ARIA where appropriate). Use existing shadcn-ui primitives like Button/Card if needed (Verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire `CookieConsentBanner` into the Home view layout so it appears until a choice is made and does not interfere with navigation once dismissed."
+        }
+      ]
+    },
+    {
+      "id": "REQ-35",
+      "summary": "Add a public Ratings section with rating submission (1–5 + optional comment) and recent ratings display near the end of the Home page.",
+      "acceptanceCriteria": [
+        "Backend: a new public method exists to create a rating with fields for rating value and optional comment, and it stores a timestamp; ratings persist across upgrades (add `backend/migration.mo` only if required by the platform’s upgrade policy).",
+        "Backend: a query method exists to list ratings (for rendering on the public site), with most-recent-first ordering.",
+        "Frontend: a new “Ratings” section exists near the end of the Home page and includes a simple form to submit a rating and a list/summary of recent ratings.",
+        "On successful submission, the new rating appears in the ratings list without requiring a full page reload (React Query invalidation/refetch).",
+        "Validation prevents out-of-range ratings (only 1–5 allowed) and shows clear English error messages for invalid input or failed submission."
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Eliminate build-breaking lint/TypeScript issues (such as unused imports) and improve error visibility for inquiry creation without changing backend interactions."
+          "description": "Add React Query hooks for website ratings using existing backend actor capabilities (e.g., fetch recent ratings, fetch average rating, submit rating) and ensure successful submission invalidates/refetches relevant rating queries so the list updates without full reload."
+        },
+        {
+          "path": "frontend/src/components/sections/RatingsSection.tsx",
+          "operation": "create",
+          "description": "Create a public Ratings section containing: a simple 1–5 rating input (e.g., radio/select/buttons), optional comment field, client-side validation with clear English errors, submit state handling, and a recent ratings list/summary. Use existing shadcn-ui components (Card, Button, Input/Textarea, etc.) for consistent UI (Verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render the new `RatingsSection` on the Home view after the existing Contact section (and before Footer) so it appears near the end of the marketing page."
+        },
+        {
+          "path": "frontend/src/components/site/Header.tsx",
+          "operation": "modify",
+          "description": "Add a Home navigation item to scroll to the Ratings section (e.g., `id=\"ratings\"`) so the section is discoverable without introducing new routes."
+        },
+        {
+          "path": "frontend/src/components/site/Footer.tsx",
+          "operation": "modify",
+          "description": "Add a footer quick link to scroll to the Ratings section to match other section navigation and improve discoverability."
+        }
+      ]
+    },
+    {
+      "id": "REQ-36",
+      "summary": "Extend the Admin dashboard to display submitted ratings in a most-recent-first table/list with an empty state.",
+      "acceptanceCriteria": [
+        "Admin view (`frontend/src/pages/AdminPage.tsx`) includes an additional section for Ratings with a table/list showing rating value, comment (if any), and timestamp.",
+        "Ratings are displayed most-recent-first.",
+        "If there are no ratings, the UI shows an English empty-state message (e.g., “No ratings yet”)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add/extend a React Query hook for fetching all ratings for Admin review and reuse shared date formatting helpers if helpful; ensure query keys are stable and compatible with existing actor lifecycle handling."
+        },
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Add an Admin 'Ratings' section using shadcn-ui Card/Table components to list ratings (value, comment, timestamp) sorted most-recent-first, including an English empty-state message when none exist. Keep the admin access guard consistent with the existing authorization flow (authorization component; Verify the component's usage instructions before implementing). Verify shadcn-ui component usage instructions before implementing."
         }
       ]
     }

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Wrench, Phone } from 'lucide-react';
 
@@ -7,6 +8,8 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ heading, subheading }: HeroSectionProps) {
+  const [videoError, setVideoError] = useState(false);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -19,11 +22,25 @@ export default function HeroSection({ heading, subheading }: HeroSectionProps) {
       id="hero"
       className="relative min-h-[600px] flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: 'url(/assets/generated/legend-techno-hero-bg-v2.dim_1600x900.png)',
+        backgroundImage: videoError ? 'url(/assets/generated/legend-techno-hero-bg-v2.dim_1600x900.png)' : undefined,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundColor: videoError ? undefined : 'oklch(0.12 0 0)',
       }}
     >
+      {!videoError && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          onError={() => setVideoError(true)}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4" type="video/mp4" />
+        </video>
+      )}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/85 to-background/75" />
       
       <div className="container relative z-10 py-20">

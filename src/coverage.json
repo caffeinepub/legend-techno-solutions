@@ -1,52 +1,86 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T18:30:16.680Z",
+  "generatedAt": "2026-02-12T14:33:45.782Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 2,
+    "total": 5,
+    "implemented": 5,
     "items": [
       {
-        "id": "REQ-27",
-        "summary": "Perform a full production smoke-test of the marketing site (Home view) and Admin view and fix any runtime errors, broken navigation, or broken section scrolling so the website works reliably end-to-end.",
+        "id": "REQ-32",
+        "summary": "Add an animated short laptop/motherboard repairing video as the Home page Hero background, rendered behind the existing Hero content with a readable overlay. The video must autoplay (muted), loop, and play inline on mobile, and it must gracefully fall back (e.g., to the existing hero background image) if the video cannot be loaded.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
+          "frontend/src/components/sections/HeroSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
+          "frontend/src/components/sections/HeroSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-33",
+        "summary": "Switch the site to use a dark theme by default across the marketing pages (Home sections) and Admin view, ensuring text, borders, cards, and CTAs have sufficient contrast and the overall look is consistently dark.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.html",
+          "frontend/src/index.css",
+          "frontend/src/pages/AdminPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/index.html",
+          "frontend/src/index.css",
+          "frontend/src/pages/AdminPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-34",
+        "summary": "Add a cookie consent/notice banner that appears on the site until the user accepts (and optionally declines). Persist the choice locally so the banner does not reappear on subsequent visits, and include clear English user-facing text.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/site/CookieConsentBanner.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/site/CookieConsentBanner.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-35",
+        "summary": "Add a public website rating feature for Legend Techno Solutions so visitors can submit a rating (e.g., 1–5 stars) and an optional comment, and display recent ratings on the marketing site near the end of the Home page (after the Contact section).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/sections/RatingsSection.tsx",
           "frontend/src/App.tsx",
-          "frontend/src/hooks/useSiteContent.ts",
           "frontend/src/components/site/Header.tsx",
           "frontend/src/components/site/Footer.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/sections/RatingsSection.tsx",
           "frontend/src/App.tsx",
-          "frontend/src/hooks/useSiteContent.ts",
           "frontend/src/components/site/Header.tsx",
           "frontend/src/components/site/Footer.tsx"
         ]
       },
       {
-        "id": "REQ-28",
-        "summary": "Update the Motoko backend default `SiteContent` values so that a fresh deploy (or empty state) shows Legend Techno Solutions-specific copy (hero/services/about/contact + business hours) instead of generic business placeholder text.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-29",
-        "summary": "Ensure the application build and deploy pipeline completes successfully for both frontend and backend, and fix any configuration/build issues that prevent successful deployment.",
+        "id": "REQ-36",
+        "summary": "Extend the Admin dashboard to allow viewing submitted website ratings in a simple table/list (most recent first) so the business can review feedback.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/sections/ServicesSection.tsx",
-          "frontend/src/components/sections/ContactSection.tsx",
-          "frontend/src/hooks/useQueries.ts"
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/AdminPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/sections/ServicesSection.tsx",
-          "frontend/src/components/sections/ContactSection.tsx",
-          "frontend/src/hooks/useQueries.ts"
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/AdminPage.tsx"
         ]
       }
     ]
@@ -57,13 +91,21 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
+    "frontend/index.html",
+    "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
     "frontend/src/App.tsx",
-    "frontend/src/components/sections/ContactSection.tsx",
-    "frontend/src/components/sections/ServicesSection.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/sections/HeroSection.tsx",
+    "frontend/src/components/sections/RatingsSection.tsx",
+    "frontend/src/components/site/CookieConsentBanner.tsx",
     "frontend/src/components/site/Footer.tsx",
     "frontend/src/components/site/Header.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
     "frontend/src/hooks/useQueries.ts",
-    "frontend/src/hooks/useSiteContent.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/AdminPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

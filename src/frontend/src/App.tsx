@@ -5,7 +5,9 @@ import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import AboutSection from './components/sections/AboutSection';
 import ContactSection from './components/sections/ContactSection';
+import RatingsSection from './components/sections/RatingsSection';
 import AdminPage from './pages/AdminPage';
+import CookieConsentBanner from './components/site/CookieConsentBanner';
 import { Toaster } from '@/components/ui/sonner';
 import { useGetSiteContent } from './hooks/useSiteContent';
 
@@ -62,8 +64,10 @@ function App() {
           subheading={siteContent?.contactSubheading}
           businessHours={siteContent?.businessHours}
         />
+        <RatingsSection />
       </main>
       <Footer />
+      <CookieConsentBanner />
       <Toaster />
     </div>
   );

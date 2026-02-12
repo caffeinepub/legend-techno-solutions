@@ -1,83 +1,73 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T18:30:16.677Z",
-  "summary": "Diff improves frontend navigation/hash routing and contact form robustness, but backend default SiteContent does not match the requested Legend Techno Solutions domain defaults. Several additional frontend/backend features and theme/UI changes appear to be introduced beyond the stated scope.",
+  "generatedAt": "2026-02-12T14:33:45.778Z",
+  "summary": "REQ-34 (cookie consent banner) and REQ-33 (dark-by-default via index.html) appear implemented. REQ-32 is partially implemented in code (HeroSection uses a video with fallback/overlay) but the diff does not show the required new MP4 asset being added. REQ-35 backend work for storing/listing ratings is not evidenced in the provided backend diff excerpt (frontend calls new actor methods, but backend implementations are not shown). Admin ratings UI (REQ-36) is suggested by imports/hooks and file summaries, but the diff excerpt is truncated before the actual table rendering.",
   "missing_requirements": [
     {
-      "id": "REQ-28",
-      "requirement": "Update the Motoko backend default `SiteContent` values so a fresh deploy/empty state shows Legend Techno Solutions-specific copy (computer/laptop repair, CCTV installation, networking) including business hours.",
-      "reason": "`backend/main.mo` shows updated defaults, but the services/about/contact copy shown is generic IT/digital transformation oriented (e.g., cloud solutions, digital transformation consulting) rather than the requested Legend Techno Solutions domain-specific copy. Business hours content is not visible due to truncation, so it cannot be confirmed either.",
+      "id": "REQ-32",
+      "requirement": "A new hero background video file exists under `frontend/public/assets/generated/` and is used by `frontend/src/components/sections/HeroSection.tsx` (with autoplay/muted/loop/playsInline, overlay readability, and graceful fallback).",
+      "reason": "HeroSection references the MP4 and includes autoplay/muted/loop/playsInline plus an overlay and onError fallback, but the diff summary does not show the required MP4 file being added under `frontend/public/assets/generated/`.",
       "evidence": [
-        "backend/main.mo"
+        "frontend/src/components/sections/HeroSection.tsx (references `/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4`)",
+        "File diff summary ADDED FILES list does not include `frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4`"
       ]
     },
     {
-      "id": "REQ-29",
-      "requirement": "Ensure the application build and deploy pipeline completes successfully for both frontend and backend and fix any configuration/build issues preventing deployment.",
-      "reason": "The diff summary shows code/config changes, but provides no concrete evidence of build/deploy pipeline fixes or that builds/deployments were verified successful (cannot be concluded from the provided diff summary alone).",
+      "id": "REQ-35",
+      "requirement": "Backend: add public method to create a rating (1–5 + optional comment) with timestamp, persist across upgrades; add query method to list ratings most-recent-first.",
+      "reason": "Frontend hooks call `submitRating`, `getRecentRatings`, `getAverageRating`, and `getAllRatings`, but the provided `backend/main.mo` diff excerpt does not show any rating types/storage/methods or upgrade persistence logic. With only the shown evidence, backend support for ratings cannot be confirmed.",
       "evidence": [
-        "frontend/tailwind.config.js",
-        "frontend/index.html",
-        "frontend/src/hooks/useActor.ts",
-        "backend/main.mo"
+        "frontend/src/hooks/useQueries.ts (calls `actor.submitRating`, `actor.getRecentRatings`, `actor.getAverageRating`, `actor.getAllRatings`)",
+        "backend/main.mo (truncated excerpt shows inquiries/site content, but no ratings-related declarations/methods in the shown portion)"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added user profile management APIs and related authorization checks in the backend (get/save user profiles).",
-      "reason": "Not requested by REQ-27/28/29 and conflicts with the non-goal of avoiding new backend features unrelated to stability/build/default content.",
+      "description": "Average rating aggregation endpoint/UI (`getAverageRating`) and average rating display in the public Ratings section.",
+      "reason": "REQ-35 requires submitting ratings and listing recent ratings; it does not request computing or displaying an average rating or adding a backend method for it.",
       "evidence": [
-        "backend/main.mo"
+        "frontend/src/hooks/useQueries.ts (adds `useGetAverageRating` calling `actor.getAverageRating()`)",
+        "frontend/src/components/sections/RatingsSection.tsx (renders average rating UI)"
       ]
     },
     {
-      "description": "Introduced/expanded backend authorization/access control mixins and permission checks (admin/user gating) beyond what was requested.",
-      "reason": "Not explicitly requested by REQ-27/28/29; appears as new functionality rather than a targeted stability/default-content fix.",
+      "description": "Additional contact/inquiry parsing helper functions included in `useQueries.ts` (service type, preferred contact, phone parsing).",
+      "reason": "Not part of REQ-32—REQ-36; these changes extend inquiry parsing beyond the requested hero video/dark theme/cookie banner/ratings/admin-ratings scope.",
       "evidence": [
-        "backend/main.mo"
+        "frontend/src/hooks/useQueries.ts (adds `parseServiceType`, `parsePreferredContact`, `parsePhone`, `parseActualMessage`)"
       ]
     },
     {
-      "description": "Internet Identity login/logout UI and access-denied screen for admin access control.",
-      "reason": "Not requested by REQ-27/28/29; represents new auth UX/features.",
+      "description": "UI/behavior change in Contact section to make the phone number a clickable `tel:` link (mentioned in file summaries).",
+      "reason": "Not requested by REQ-32—REQ-36.",
       "evidence": [
-        "frontend-file-summaries.txt (frontend/src/components/auth/LoginButton.tsx)",
-        "frontend-file-summaries.txt (frontend/src/components/auth/AccessDeniedScreen.tsx)"
+        "frontend-file-summaries.txt (ContactSection summary mentions clickable tel: link)"
       ]
     },
     {
-      "description": "Admin dashboard enhancements (search, filtering, inquiry management UI/editor components) beyond smoke-test stability fixes.",
-      "reason": "REQ-27 asks to fix runtime errors/navigation; these changes look like feature expansion rather than minimal fixes.",
+      "description": "New global animation utility classes and keyframes in `frontend/src/index.css`.",
+      "reason": "REQ-33 asks for dark theme by default and contrast; it does not request adding new animation utility classes.",
       "evidence": [
-        "frontend-file-summaries.txt (frontend/src/pages/AdminPage.tsx)",
-        "frontend-file-summaries.txt (frontend/src/components/admin/SiteContentEditor.tsx)"
-      ]
-    },
-    {
-      "description": "Visual/theme redesign changes (global OKLCH teal/cyan theme, new animations, hero/about background updates, favicon/meta updates).",
-      "reason": "Conflicts with the non-goal of not redesigning the website theme/marketing content beyond correcting backend default content; also exceeds the scope of stability/build fixes.",
-      "evidence": [
-        "frontend-file-summaries.txt (frontend/src/index.css)",
-        "frontend-file-summaries.txt (frontend/tailwind.config.js)",
-        "frontend-file-summaries.txt (frontend/src/components/sections/HeroSection.tsx)",
-        "frontend-file-summaries.txt (frontend/src/components/sections/AboutSection.tsx)",
-        "frontend-file-summaries.txt (frontend/index.html)"
+        "frontend/src/index.css (adds `@keyframes` and `.animate-*` utilities)"
       ]
     }
   ],
-  "confidence": 0.74,
+  "confidence": 0.62,
   "changed_files": [
     "backend/main.mo",
     "frontend-file-summaries.txt",
+    "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/sections/ContactSection.tsx",
-    "frontend/src/components/sections/ServicesSection.tsx",
+    "frontend/src/components/sections/HeroSection.tsx",
+    "frontend/src/components/sections/RatingsSection.tsx",
+    "frontend/src/components/site/CookieConsentBanner.tsx",
     "frontend/src/components/site/Footer.tsx",
     "frontend/src/components/site/Header.tsx",
     "frontend/src/hooks/useQueries.ts",
-    "frontend/src/hooks/useSiteContent.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/AdminPage.tsx",
     "project_state.json"
   ]
 }

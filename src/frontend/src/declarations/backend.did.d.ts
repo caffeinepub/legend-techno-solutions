@@ -34,18 +34,28 @@ export interface UserProfile { 'name' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
+export interface WebsiteRating {
+  'id' : bigint,
+  'comment' : [] | [string],
+  'timestamp' : Time,
+  'rating' : bigint,
+}
 export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createInquiry' : ActorMethod<[string, string, string], undefined>,
   'getAllInquiries' : ActorMethod<[], Array<ContactInquiry>>,
+  'getAllRatings' : ActorMethod<[], Array<WebsiteRating>>,
+  'getAverageRating' : ActorMethod<[], [] | [number]>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getInquiry' : ActorMethod<[bigint], [] | [ContactInquiry]>,
+  'getRecentRatings' : ActorMethod<[bigint], Array<WebsiteRating>>,
   'getSiteContent' : ActorMethod<[], SiteContent>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'submitRating' : ActorMethod<[bigint, [] | [string]], undefined>,
   'updateSiteContent' : ActorMethod<[SiteContent], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
