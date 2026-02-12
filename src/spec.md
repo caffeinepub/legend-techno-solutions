@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Make the “Years Experience” and “Happy Clients” hero stats clickable to open a modal showing a scrollable list of numbers 1–1000, and remove the “24/7 Support Available” stat.
+**Goal:** Enable Hero stat clicks on the Home page to open a reliable, dynamic details modal/dialog in production builds.
 
 **Planned changes:**
-- Update `frontend/src/components/sections/HeroSection.tsx` so the “Years Experience” and “Happy Clients” stat blocks are clickable/tappable and open a modal/dialog without leaving the page.
-- Implement the modal content as a visible, scrollable list displaying numbers 1 through 1000 (inclusive), sized to avoid viewport overflow on mobile/desktop, with close controls (and Escape-to-close if supported by existing patterns).
-- Remove the “24/7” / “Support Available” stat from the hero stats area and adjust the layout so it remains responsive and visually balanced with the remaining stats.
+- Make the “10+ Years Experience” Hero stat clickable to open a modal/dialog on the Home page.
+- Make the “1000+ Happy Clients” Hero stat clickable to open a modal/dialog on the Home page.
+- Render dynamic, scrollable modal content showing a generated list of numbers from 1 to 1000 (no static images).
+- Ensure the modal/dialog supports closing via an explicit close control and standard dialog dismissal behavior, with no console errors in production builds.
 
-**User-visible outcome:** On the Home page, users can click “Years Experience” or “Happy Clients” to open a closable modal showing a scrollable list of numbers from 1 to 1000, and the “24/7 Support Available” stat is no longer shown.
+**User-visible outcome:** On the Home page, users can click the “Years Experience” or “Happy Clients” Hero stats to open a closable modal showing a scrollable, dynamically generated list of numbers from 1–1000.

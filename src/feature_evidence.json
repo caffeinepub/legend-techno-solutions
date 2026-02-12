@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-home-page-hero-stats-in-frontend-src-components-sections-herosection-tsx-so-that-clicking-the-years-experience-stat-and-the-happy-clients-stat-opens-a-modal-dialog-that-displays-the-numbers-1-through-1000-inclusive-in-a-scrollable-list",
-      "featureTitle": "Update the Home page Hero stats in `frontend/src/components/sections/HeroSection.tsx` so that clicking the \"Years Experience\" stat and the \"Happy Clients\" stat opens a modal/dialog that displays the numbers 1 through 1000 (inclusive) in a scrollable list.",
+      "featureId": "feature-ensure-that-clicking-the-hero-stats-for-10-years-experience-and-1000-happy-clients-opens-a-dynamic-details-view-modal-dialog-on-the-home-page-and-that-this-interaction-works-reliably-in-production-builds",
+      "featureTitle": "Ensure that clicking the Hero stats for \"10+\" (Years Experience) and \"1000+\" (Happy Clients) opens a dynamic details view (modal/dialog) on the Home page, and that this interaction works reliably in production builds.",
       "files": [
         "frontend/src/components/sections/HeroSection.tsx"
       ],
@@ -16,26 +16,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-62"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-remove-the-24-7-stat-24-7-support-available-from-the-hero-stats-area-in-frontend-src-components-sections-herosection-tsx-and-ensure-the-stats-layout-remains-responsive-and-visually-balanced-after-removal",
-      "featureTitle": "Remove the \"24/7\" stat (\"24/7\" + \"Support Available\") from the Hero stats area in `frontend/src/components/sections/HeroSection.tsx`, and ensure the stats layout remains responsive and visually balanced after removal.",
-      "files": [
-        "frontend/src/components/sections/HeroSection.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-63"
+        "REQ-64"
       ],
       "confidence": "high"
     }

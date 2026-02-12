@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Wrench, Phone, X } from 'lucide-react';
 import {
@@ -32,8 +32,16 @@ export default function HeroSection({ heading, subheading }: HeroSectionProps) {
     setIsModalOpen(true);
   };
 
-  // Generate array of numbers 1-1000
-  const numbers = Array.from({ length: 1000 }, (_, i) => i + 1);
+  const handleModalClose = (open: boolean) => {
+    setIsModalOpen(open);
+    if (!open) {
+      // Reset title when closing to avoid stale state
+      setModalTitle('');
+    }
+  };
+
+  // Memoize the numbers array to avoid recreation on every render
+  const numbers = useMemo(() => Array.from({ length: 1000 }, (_, i) => i + 1), []);
 
   return (
     <>
@@ -98,6 +106,7 @@ export default function HeroSection({ heading, subheading }: HeroSectionProps) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 max-w-md mx-auto">
               <button
+                type="button"
                 onClick={() => openModal('Years Experience')}
                 className="flex flex-col items-center gap-2 p-4 rounded-lg transition-all hover:bg-primary/10 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer"
                 aria-label="View Years Experience details"
@@ -106,6 +115,7 @@ export default function HeroSection({ heading, subheading }: HeroSectionProps) {
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </button>
               <button
+                type="button"
                 onClick={() => openModal('Happy Clients')}
                 className="flex flex-col items-center gap-2 p-4 rounded-lg transition-all hover:bg-primary/10 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer"
                 aria-label="View Happy Clients details"
@@ -118,7 +128,7 @@ export default function HeroSection({ heading, subheading }: HeroSectionProps) {
         </div>
       </section>
 
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog open={isModalOpen} onOpenChange={handleModalClose}>
         <DialogContent className="max-w-md max-h-[80vh] flex flex-col">
           <DialogHeader>
             <DialogTitle>{modalTitle}</DialogTitle>

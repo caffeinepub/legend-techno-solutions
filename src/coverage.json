@@ -1,29 +1,18 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T18:33:08.652Z",
+  "generatedAt": "2026-02-12T18:40:42.009Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-62",
-        "summary": "Update the Home page Hero stats in `frontend/src/components/sections/HeroSection.tsx` so that clicking the \"Years Experience\" stat and the \"Happy Clients\" stat opens a modal/dialog that displays the numbers 1 through 1000 (inclusive) in a scrollable list.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/sections/HeroSection.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/sections/HeroSection.tsx"
-        ]
-      },
-      {
-        "id": "REQ-63",
-        "summary": "Remove the \"24/7\" stat (\"24/7\" + \"Support Available\") from the Hero stats area in `frontend/src/components/sections/HeroSection.tsx`, and ensure the stats layout remains responsive and visually balanced after removal.",
+        "id": "REQ-64",
+        "summary": "Ensure that clicking the Hero stats for \"10+\" (Years Experience) and \"1000+\" (Happy Clients) opens a dynamic details view (modal/dialog) on the Home page, and that this interaction works reliably in production builds.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/sections/HeroSection.tsx"

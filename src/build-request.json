@@ -1,54 +1,36 @@
 {
   "kind": "build_request",
-  "title": "Make Hero stats clickable to show 1–1000 and remove 24/7 stat",
+  "title": "Open a dynamic details view when clicking Hero stats",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-62",
-      "text": "Update the Home page Hero stats in `frontend/src/components/sections/HeroSection.tsx` so that clicking the \"Years Experience\" stat and the \"Happy Clients\" stat opens a modal/dialog that displays the numbers 1 through 1000 (inclusive) in a scrollable list.",
+      "id": "REQ-64",
+      "text": "Ensure that clicking the Hero stats for \"10+\" (Years Experience) and \"1000+\" (Happy Clients) opens a dynamic details view (modal/dialog) on the Home page, and that this interaction works reliably in production builds.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages-10"
+          "recent-messages-3"
         ],
         "quotes": [
-          "if i click happy clint and 10+years experience it need to open and show 1 to 1000"
+          "if i click happy clint and 10+ years experince it need to open dynamiv view"
         ]
       },
       "acceptanceCriteria": [
-        "On the Home page Hero section, both the \"Years Experience\" and \"Happy Clients\" stat blocks are clickable/tappable.",
-        "Clicking either stat opens a modal/dialog without navigating away from the page.",
-        "The opened modal shows a visible list of numbers from 1 to 1000 inclusive.",
-        "The list is scrollable and does not overflow the viewport on mobile or desktop.",
-        "The modal can be closed via an explicit close control and by pressing Escape (if using the existing dialog/modal patterns).",
-        "All user-facing text added for this feature is in English."
-      ]
-    },
-    {
-      "id": "REQ-63",
-      "text": "Remove the \"24/7\" stat (\"24/7\" + \"Support Available\") from the Hero stats area in `frontend/src/components/sections/HeroSection.tsx`, and ensure the stats layout remains responsive and visually balanced after removal.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "recent-messages-10"
-        ],
-        "quotes": [
-          "and remove 24/7"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Hero section no longer displays \"24/7\" or \"Support Available\" anywhere in the stats row/grid.",
-        "The stats grid remains responsive across breakpoints (no broken spacing/alignment after removing the third item)."
+        "On the Home page Hero section, clicking the \"Years Experience\" stat opens a modal/dialog.",
+        "Clicking the \"Happy Clients\" stat opens a modal/dialog.",
+        "The modal/dialog content is dynamically generated (not a static screenshot/image) and renders a scrollable list of numbers from 1 to 1000 inclusive.",
+        "The modal/dialog can be closed via an explicit close control and by dismissing the dialog (per existing dialog behavior).",
+        "No console errors occur when opening/closing the modal/dialog in a production build."
       ]
     }
   ],
   "constraints": [
-    "Frontend immutable paths must not be edited: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`.",
-    "Keep changes limited to implementing the requested Hero stat click behavior and removing the \"24/7\" stat; do not alter unrelated content or backend APIs."
+    "Frontend immutable paths (do not edit directly): frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose only).",
+    "Keep changes within the existing React + TypeScript + Tailwind + React Query stack."
   ],
   "nonGoals": [
-    "Do not add or change backend data models/APIs for this feature.",
-    "Do not change the existing hero heading/subheading content loading behavior from site content."
+    "Do not add new backend APIs or persist any additional data for this modal/dialog.",
+    "Do not change existing Hero section copy or add new stats beyond enabling the requested dynamic view behavior."
   ],
   "imageRequirements": {
     "required": [],

@@ -1,39 +1,23 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Clickable Hero stats modal with 1–1000 list and remove 24/7 stat",
+  "title": "Hero stats modal with dynamic details list (Home page)",
   "requirements": [
     {
-      "id": "REQ-62",
-      "summary": "Make the \"Years Experience\" and \"Happy Clients\" Hero stats open a closable modal showing a scrollable 1–1000 list.",
+      "id": "REQ-64",
+      "summary": "Make Hero stats (10+ Years Experience, 1000+ Happy Clients) open a reliable dynamic modal/dialog on the Home page with a scrollable 1–1000 list and proper close behavior.",
       "acceptanceCriteria": [
-        "On the Home page Hero section, both the \"Years Experience\" and \"Happy Clients\" stat blocks are clickable/tappable.",
-        "Clicking either stat opens a modal/dialog without navigating away from the page.",
-        "The opened modal shows a visible list of numbers from 1 to 1000 inclusive.",
-        "The list is scrollable and does not overflow the viewport on mobile or desktop.",
-        "The modal can be closed via an explicit close control and by pressing Escape (if using the existing dialog/modal patterns).",
-        "All user-facing text added for this feature is in English."
+        "On the Home page Hero section, clicking the \"Years Experience\" stat opens a modal/dialog.",
+        "Clicking the \"Happy Clients\" stat opens a modal/dialog.",
+        "The modal/dialog content is dynamically generated (not a static screenshot/image) and renders a scrollable list of numbers from 1 to 1000 inclusive.",
+        "The modal/dialog can be closed via an explicit close control and by dismissing the dialog (per existing dialog behavior).",
+        "No console errors occur when opening/closing the modal/dialog in a production build."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/sections/HeroSection.tsx",
           "operation": "modify",
-          "description": "Add interactive behavior to the two specified stat blocks: make them keyboard- and pointer-accessible controls that open an in-place modal/dialog. Implement modal state, Escape-to-close handling, body scroll locking while open, and an explicit Close control. Render a scrollable list of numbers 1–1000 within a max-height container to prevent viewport overflow on mobile/desktop, and ensure no navigation occurs."
-        }
-      ]
-    },
-    {
-      "id": "REQ-63",
-      "summary": "Remove the \"24/7 Support Available\" Hero stat and keep the remaining stats responsive and balanced.",
-      "acceptanceCriteria": [
-        "The Hero section no longer displays \"24/7\" or \"Support Available\" anywhere in the stats row/grid.",
-        "The stats grid remains responsive across breakpoints (no broken spacing/alignment after removing the third item)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/sections/HeroSection.tsx",
-          "operation": "modify",
-          "description": "Remove the third stat block containing \"24/7\" and \"Support Available\" and adjust the stats grid classes/layout so the remaining two items are visually balanced and responsive across breakpoints (e.g., update column count/gaps/centering as needed)."
+          "description": "Harden the Hero stats click-to-open behavior by keeping dialog state deterministic for production builds (e.g., type=\"button\" on stat triggers, reset modal title on close, and avoid unnecessary re-creation of the 1–1000 list via memoization). Use the shadcn-ui Dialog and ScrollArea components to provide the modal/dismiss behavior and scrollable content; verify the component's usage instructions before implementing."
         }
       ]
     }
