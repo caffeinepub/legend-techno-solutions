@@ -1,87 +1,62 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T14:33:45.782Z",
+  "generatedAt": "2026-02-12T14:41:34.288Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 5,
-    "implemented": 5,
+    "total": 4,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-32",
-        "summary": "Add an animated short laptop/motherboard repairing video as the Home page Hero background, rendered behind the existing Hero content with a readable overlay. The video must autoplay (muted), loop, and play inline on mobile, and it must gracefully fall back (e.g., to the existing hero background image) if the video cannot be loaded.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
-          "frontend/src/components/sections/HeroSection.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
-          "frontend/src/components/sections/HeroSection.tsx"
-        ]
-      },
-      {
-        "id": "REQ-33",
-        "summary": "Switch the site to use a dark theme by default across the marketing pages (Home sections) and Admin view, ensuring text, borders, cards, and CTAs have sufficient contrast and the overall look is consistently dark.",
+        "id": "REQ-37",
+        "summary": "Update all user-facing occurrences of the old company name \"Legend Techno Solutions\" to the new company name \"ALGLOE TECHNO SOLUTIONS\" across the marketing site UI and shared metadata, including (at minimum) header branding text/aria-label/alt text, footer branding/copyright, logo lightbox alt text, and the HTML document title/meta description where it appears.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/index.html",
-          "frontend/src/index.css",
-          "frontend/src/pages/AdminPage.tsx"
+          "frontend/src/components/site/Header.tsx",
+          "frontend/src/components/site/Footer.tsx",
+          "frontend/src/components/site/LogoLightbox.tsx",
+          "frontend/src/components/sections/AboutSection.tsx"
         ],
         "matchedFiles": [
           "frontend/index.html",
-          "frontend/src/index.css",
-          "frontend/src/pages/AdminPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-34",
-        "summary": "Add a cookie consent/notice banner that appears on the site until the user accepts (and optionally declines). Persist the choice locally so the banner does not reappear on subsequent visits, and include clear English user-facing text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/site/CookieConsentBanner.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/site/CookieConsentBanner.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-35",
-        "summary": "Add a public website rating feature for Legend Techno Solutions so visitors can submit a rating (e.g., 1–5 stars) and an optional comment, and display recent ratings on the marketing site near the end of the Home page (after the Contact section).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/components/sections/RatingsSection.tsx",
-          "frontend/src/App.tsx",
           "frontend/src/components/site/Header.tsx",
-          "frontend/src/components/site/Footer.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/components/sections/RatingsSection.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/site/Header.tsx",
-          "frontend/src/components/site/Footer.tsx"
+          "frontend/src/components/site/Footer.tsx",
+          "frontend/src/components/site/LogoLightbox.tsx",
+          "frontend/src/components/sections/AboutSection.tsx"
         ]
       },
       {
-        "id": "REQ-36",
-        "summary": "Extend the Admin dashboard to allow viewing submitted website ratings in a simple table/list (most recent first) so the business can review feedback.",
+        "id": "REQ-38",
+        "summary": "Increase the header’s overall size so it appears visibly larger than the current header, while keeping the layout responsive and ensuring the navigation and mobile menu remain usable.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/pages/AdminPage.tsx"
+          "frontend/src/components/site/Header.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/pages/AdminPage.tsx"
+          "frontend/src/components/site/Header.tsx"
         ]
+      },
+      {
+        "id": "REQ-39",
+        "summary": "Ensure the company name \"ALGLOE TECHNO SOLUTIONS\" is prominently shown in the header branding area (next to/near the logo) across breakpoints, including on small screens (do not hide the company name entirely on mobile).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/site/Header.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/site/Header.tsx"
+        ]
+      },
+      {
+        "id": "REQ-40",
+        "summary": "Update the Motoko backend default site content so that a fresh deploy (or empty state) uses \"ALGLOE TECHNO SOLUTIONS\" in the default SiteContent fields where the old company name appears (e.g., hero heading and about heading/description). Do not change existing stored site content values for already-deployed canisters.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
       }
     ]
   },
@@ -92,20 +67,10 @@
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/index.html",
-    "frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/components/sections/HeroSection.tsx",
-    "frontend/src/components/sections/RatingsSection.tsx",
-    "frontend/src/components/site/CookieConsentBanner.tsx",
+    "frontend/src/components/sections/AboutSection.tsx",
     "frontend/src/components/site/Footer.tsx",
     "frontend/src/components/site/Header.tsx",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useQueries.ts",
-    "frontend/src/index.css",
-    "frontend/src/pages/AdminPage.tsx",
+    "frontend/src/components/site/LogoLightbox.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

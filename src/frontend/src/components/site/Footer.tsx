@@ -17,7 +17,7 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
   const appIdentifier = encodeURIComponent(
-    typeof window !== 'undefined' ? window.location.hostname : 'legend-techno'
+    typeof window !== 'undefined' ? window.location.hostname : 'algloe-techno'
   );
 
   return (
@@ -29,15 +29,15 @@ export default function Footer() {
               <button
                 onClick={() => setShowLogoLightbox(true)}
                 className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-                aria-label="View Legend Techno Solutions logo"
+                aria-label="View ALGLOE TECHNO SOLUTIONS logo"
               >
                 <img
                   src="/assets/generated/legend-techno-logo-v2.dim_512x512.png"
-                  alt="Legend Techno Solutions"
+                  alt="ALGLOE TECHNO SOLUTIONS"
                   className="h-12 w-12 object-contain"
                 />
                 <span className="font-bold text-foreground">
-                  Legend Techno
+                  ALGLOE TECHNO
                 </span>
               </button>
               <p className="text-sm text-muted-foreground">
@@ -146,7 +146,7 @@ export default function Footer() {
 
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
             <p>
-              © {currentYear} Legend Techno Solutions. All rights reserved.
+              © {currentYear} ALGLOE TECHNO SOLUTIONS. All rights reserved.
             </p>
             <p className="mt-2 flex items-center justify-center gap-1">
               Built with <Heart className="h-4 w-4 text-primary fill-primary" /> using{' '}

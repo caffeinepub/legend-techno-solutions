@@ -112,12 +112,12 @@ actor {
 
   func defaultSiteContent() : SiteContent {
     {
-      heroHeading = "Legend Techno Solutions";
+      heroHeading = "ALGLOE TECHNO SOLUTIONS";
       heroSubheading = "Empowering Your Digital Future";
       servicesHeading = "Our Services";
       servicesDescription = "We offer a range of services including digital transformation consulting, cloud solutions, and IT support.";
-      aboutHeading = "About Legend Techno Solutions";
-      aboutDescription = "Legend Techno Solutions is dedicated to helping businesses achieve their digital goals with innovative and reliable technology solutions.";
+      aboutHeading = "About ALGLOE TECHNO SOLUTIONS";
+      aboutDescription = "ALGLOE Technology Solutions is dedicated to helping businesses achieve their digital goals with innovative and reliable technology solutions.";
       contactHeading = "Get in Touch";
       contactSubheading = "Contact us to discuss how we can help your business thrive in the digital age.";
       businessHours = {

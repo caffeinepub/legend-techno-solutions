@@ -34,7 +34,7 @@ export default function LogoLightbox({ isOpen, onClose }: LogoLightboxProps) {
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label="Logo enlarged view"
+      aria-label="ALGLOE TECHNO SOLUTIONS logo enlarged view"
     >
       <div className="relative max-w-[90vw] max-h-[90vh] p-4">
         <Button
@@ -48,7 +48,7 @@ export default function LogoLightbox({ isOpen, onClose }: LogoLightboxProps) {
         </Button>
         <img
           src="/assets/generated/legend-techno-logo-uploaded.dim_512x512.png"
-          alt="Legend Techno Solutions Logo"
+          alt="ALGLOE TECHNO SOLUTIONS Logo"
           className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
           onClick={(e) => e.stopPropagation()}
         />

@@ -1,56 +1,45 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T14:33:45.778Z",
-  "summary": "REQ-34 (cookie consent banner) and REQ-33 (dark-by-default via index.html) appear implemented. REQ-32 is partially implemented in code (HeroSection uses a video with fallback/overlay) but the diff does not show the required new MP4 asset being added. REQ-35 backend work for storing/listing ratings is not evidenced in the provided backend diff excerpt (frontend calls new actor methods, but backend implementations are not shown). Admin ratings UI (REQ-36) is suggested by imports/hooks and file summaries, but the diff excerpt is truncated before the actual table rendering.",
+  "generatedAt": "2026-02-12T14:41:34.283Z",
+  "summary": "Core rename work is partially implemented: header branding text/aria/alt and logo lightbox labels were updated to “ALGLOE TECHNO SOLUTIONS”, header height/logo/text sizes were increased, `frontend/index.html` title/meta were updated, and `backend/main.mo` default site content now uses the new name. However, the footer branding text shown in the diff appears to still be incomplete (only “ALGLOE TECHNO”), and the diff summary also indicates several unrelated frontend changes that were not requested.",
   "missing_requirements": [
     {
-      "id": "REQ-32",
-      "requirement": "A new hero background video file exists under `frontend/public/assets/generated/` and is used by `frontend/src/components/sections/HeroSection.tsx` (with autoplay/muted/loop/playsInline, overlay readability, and graceful fallback).",
-      "reason": "HeroSection references the MP4 and includes autoplay/muted/loop/playsInline plus an overlay and onError fallback, but the diff summary does not show the required MP4 file being added under `frontend/public/assets/generated/`.",
+      "id": "REQ-37",
+      "requirement": "Update all user-facing occurrences of “Legend Techno Solutions” to “ALGLOE TECHNO SOLUTIONS”, including footer branding/copyright.",
+      "reason": "The footer branding text shown in the diff does not display the full company name; it renders only “ALGLOE TECHNO”, which does not meet the acceptance criteria that footer branding uses “ALGLOE TECHNO SOLUTIONS”.",
       "evidence": [
-        "frontend/src/components/sections/HeroSection.tsx (references `/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4`)",
-        "File diff summary ADDED FILES list does not include `frontend/public/assets/generated/legend-techno-hero-bg-video.dim_1600x900.mp4`"
-      ]
-    },
-    {
-      "id": "REQ-35",
-      "requirement": "Backend: add public method to create a rating (1–5 + optional comment) with timestamp, persist across upgrades; add query method to list ratings most-recent-first.",
-      "reason": "Frontend hooks call `submitRating`, `getRecentRatings`, `getAverageRating`, and `getAllRatings`, but the provided `backend/main.mo` diff excerpt does not show any rating types/storage/methods or upgrade persistence logic. With only the shown evidence, backend support for ratings cannot be confirmed.",
-      "evidence": [
-        "frontend/src/hooks/useQueries.ts (calls `actor.submitRating`, `actor.getRecentRatings`, `actor.getAverageRating`, `actor.getAllRatings`)",
-        "backend/main.mo (truncated excerpt shows inquiries/site content, but no ratings-related declarations/methods in the shown portion)"
+        "frontend/src/components/site/Footer.tsx"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Average rating aggregation endpoint/UI (`getAverageRating`) and average rating display in the public Ratings section.",
-      "reason": "REQ-35 requires submitting ratings and listing recent ratings; it does not request computing or displaying an average rating or adding a backend method for it.",
+      "description": "Added/mentioned a Ratings section and related admin dashboard functionality.",
+      "reason": "The BuildRequest explicitly says not to change inquiry/rating functionality beyond what’s necessary for the rename/header adjustments, but the diff summary describes new ratings-related UI and hooks.",
       "evidence": [
-        "frontend/src/hooks/useQueries.ts (adds `useGetAverageRating` calling `actor.getAverageRating()`)",
-        "frontend/src/components/sections/RatingsSection.tsx (renders average rating UI)"
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Additional contact/inquiry parsing helper functions included in `useQueries.ts` (service type, preferred contact, phone parsing).",
-      "reason": "Not part of REQ-32—REQ-36; these changes extend inquiry parsing beyond the requested hero video/dark theme/cookie banner/ratings/admin-ratings scope.",
+      "description": "Hero section changed to use an autoplay looping background video with fallback behavior.",
+      "reason": "Not requested; BuildRequest scope is rename + enlarge header and update defaults.",
       "evidence": [
-        "frontend/src/hooks/useQueries.ts (adds `parseServiceType`, `parsePreferredContact`, `parsePhone`, `parseActualMessage`)"
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "UI/behavior change in Contact section to make the phone number a clickable `tel:` link (mentioned in file summaries).",
-      "reason": "Not requested by REQ-32—REQ-36.",
+      "description": "Contact section changed to include a clickable tel: link and other behavior/typing changes.",
+      "reason": "Not requested; BuildRequest non-goals include not changing site contact details/functionality beyond what’s necessary for renaming/header layout.",
       "evidence": [
-        "frontend-file-summaries.txt (ContactSection summary mentions clickable tel: link)"
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "New global animation utility classes and keyframes in `frontend/src/index.css`.",
-      "reason": "REQ-33 asks for dark theme by default and contrast; it does not request adding new animation utility classes.",
+      "description": "Global theme/style changes (OKLCH color system, dark mode default, Tailwind token/shadow changes).",
+      "reason": "Not requested; BuildRequest does not ask for visual theme overhaul, only a larger header and renamed branding.",
       "evidence": [
-        "frontend/src/index.css (adds `@keyframes` and `.animate-*` utilities)"
+        "frontend-file-summaries.txt"
       ]
     }
   ],
@@ -59,15 +48,10 @@
     "backend/main.mo",
     "frontend-file-summaries.txt",
     "frontend/index.html",
-    "frontend/src/App.tsx",
-    "frontend/src/components/sections/HeroSection.tsx",
-    "frontend/src/components/sections/RatingsSection.tsx",
-    "frontend/src/components/site/CookieConsentBanner.tsx",
+    "frontend/src/components/sections/AboutSection.tsx",
     "frontend/src/components/site/Footer.tsx",
     "frontend/src/components/site/Header.tsx",
-    "frontend/src/hooks/useQueries.ts",
-    "frontend/src/index.css",
-    "frontend/src/pages/AdminPage.tsx",
+    "frontend/src/components/site/LogoLightbox.tsx",
     "project_state.json"
   ]
 }

@@ -1,127 +1,92 @@
 {
   "kind": "build_request",
-  "title": "Add hero video background, default dark theme, cookie consent banner, and customer ratings",
+  "title": "Rename company to ALGLOE TECHNO SOLUTIONS and enlarge header with prominent name",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-32",
-      "text": "Add an animated short laptop/motherboard repairing video as the Home page Hero background, rendered behind the existing Hero content with a readable overlay. The video must autoplay (muted), loop, and play inline on mobile, and it must gracefully fall back (e.g., to the existing hero background image) if the video cannot be loaded.",
+      "id": "REQ-37",
+      "text": "Update all user-facing occurrences of the old company name \"Legend Techno Solutions\" to the new company name \"ALGLOE TECHNO SOLUTIONS\" across the marketing site UI and shared metadata, including (at minimum) header branding text/aria-label/alt text, footer branding/copyright, logo lightbox alt text, and the HTML document title/meta description where it appears.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-3"
         ],
         "quotes": [
-          "animated laptop motherboard repairing short video for home page background"
+          "change the company name , company name is ALGLOE TECHNO SOLUTIONS"
         ]
       },
       "acceptanceCriteria": [
-        "A new video file exists under `frontend/public/assets/generated/` and is used by `frontend/src/components/sections/HeroSection.tsx` as the hero background.",
-        "Hero foreground content (headline, subheadline, buttons, stats) remains readable due to an overlay layer (e.g., gradient/tint) above the video.",
-        "The video is configured for background playback: `autoplay`, `muted`, `loop`, and `playsInline`.",
-        "If the video fails to load, the Hero shows a non-broken background (fallback to an image/color) without layout shifts."
+        "Header displays the company name exactly as \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" text in the header).",
+        "Footer branding/copyright uses \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" text in the footer).",
+        "Logo-related accessible text (e.g., aria-label/alt) uses \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" accessible strings in these components).",
+        "`frontend/index.html` `<title>` (and any meta description text that includes the company name) is updated to reference \"ALGLOE TECHNO SOLUTIONS\"."
       ]
     },
     {
-      "id": "REQ-33",
-      "text": "Switch the site to use a dark theme by default across the marketing pages (Home sections) and Admin view, ensuring text, borders, cards, and CTAs have sufficient contrast and the overall look is consistently dark.",
+      "id": "REQ-38",
+      "text": "Increase the header’s overall size so it appears visibly larger than the current header, while keeping the layout responsive and ensuring the navigation and mobile menu remain usable.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-3"
         ],
         "quotes": [
-          "change the theme to dark"
+          "And header size make bigger"
         ]
       },
       "acceptanceCriteria": [
-        "On first load, the app renders in dark mode by default (the `dark` class is applied at the document level, e.g., via `frontend/index.html`).",
-        "All main sections (Header, Hero, Services, About, Contact, Footer) render with dark backgrounds and readable text using existing theme tokens in `frontend/src/index.css` (no unreadable low-contrast areas).",
-        "Admin view (`/#/admin`) also renders correctly in dark mode with readable tables, inputs, and cards."
+        "The header height is increased compared to the current implementation (e.g., larger container height and/or increased logo/text sizing) and remains visually consistent in dark theme.",
+        "On desktop widths, the navigation links remain on a single line and are not clipped.",
+        "On mobile widths, the menu button remains visible and functional, and the header does not overlap page content."
       ]
     },
     {
-      "id": "REQ-34",
-      "text": "Add a cookie consent/notice banner that appears on the site until the user accepts (and optionally declines). Persist the choice locally so the banner does not reappear on subsequent visits, and include clear English user-facing text.",
+      "id": "REQ-39",
+      "text": "Ensure the company name \"ALGLOE TECHNO SOLUTIONS\" is prominently shown in the header branding area (next to/near the logo) across breakpoints, including on small screens (do not hide the company name entirely on mobile).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-3"
         ],
         "quotes": [
-          "show cookie"
+          "and mention the company name in header"
         ]
       },
       "acceptanceCriteria": [
-        "A cookie notice banner is visible on the Home view until the user makes a choice.",
-        "The banner includes at minimum an “Accept” action; after accepting, the banner is dismissed and does not reappear on refresh (preference persisted in `localStorage` or equivalent).",
-        "Banner text is in English and clearly indicates that the site uses cookies/local storage for basic functionality.",
-        "The banner is accessible (keyboard reachable actions, visible focus state) and does not block critical navigation once dismissed."
+        "On mobile and desktop, the header displays the text \"ALGLOE TECHNO SOLUTIONS\" in the branding area without requiring opening the menu.",
+        "If space is constrained on very small screens, the company name may wrap, truncate, or reduce font size, but it must remain visible and readable (not fully hidden).",
+        "The logo click/tap behavior (opening the logo lightbox) continues to work as before."
       ]
     },
     {
-      "id": "REQ-35",
-      "text": "Add a public website rating feature for Legend Techno Solutions so visitors can submit a rating (e.g., 1–5 stars) and an optional comment, and display recent ratings on the marketing site near the end of the Home page (after the Contact section).",
-      "target": "both",
+      "id": "REQ-40",
+      "text": "Update the Motoko backend default site content so that a fresh deploy (or empty state) uses \"ALGLOE TECHNO SOLUTIONS\" in the default SiteContent fields where the old company name appears (e.g., hero heading and about heading/description). Do not change existing stored site content values for already-deployed canisters.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-3"
         ],
         "quotes": [
-          "in last page add rating website for legend"
+          "change the company name , company name is ALGLOE TECHNO SOLUTIONS"
         ]
       },
       "acceptanceCriteria": [
-        "Backend: a new public method exists to create a rating with fields for rating value and optional comment, and it stores a timestamp; ratings persist across upgrades (add `backend/migration.mo` only if required by the platform’s upgrade policy).",
-        "Backend: a query method exists to list ratings (for rendering on the public site), with most-recent-first ordering.",
-        "Frontend: a new “Ratings” section exists near the end of the Home page and includes a simple form to submit a rating and a list/summary of recent ratings.",
-        "On successful submission, the new rating appears in the ratings list without requiring a full page reload (React Query invalidation/refetch).",
-        "Validation prevents out-of-range ratings (only 1–5 allowed) and shows clear English error messages for invalid input or failed submission."
-      ]
-    },
-    {
-      "id": "REQ-36",
-      "text": "Extend the Admin dashboard to allow viewing submitted website ratings in a simple table/list (most recent first) so the business can review feedback.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "add rating website for legend"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Admin view (`frontend/src/pages/AdminPage.tsx`) includes an additional section for Ratings with a table/list showing rating value, comment (if any), and timestamp.",
-        "Ratings are displayed most-recent-first.",
-        "If there are no ratings, the UI shows an English empty-state message (e.g., “No ratings yet”)."
+        "`defaultSiteContent()` no longer contains the string \"Legend Techno Solutions\" and uses \"ALGLOE TECHNO SOLUTIONS\" in the appropriate default fields.",
+        "No migration is introduced unless strictly required by a schema/state change (this change should be default-only and not require migration).",
+        "After deployment, if site content has already been customized via the admin editor, those stored values remain unchanged."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files in `frontend/src/components/ui` or any paths listed under `frontend.immutablePaths` in SYSTEM_CONTEXT.",
-    "Backend must remain a single Motoko actor in `backend/main.mo`; add `backend/migration.mo` only if needed for state upgrades.",
-    "Do not introduce external databases, third-party auth, web sockets, or external email/cookie services."
+    "Frontend immutable paths must not be edited: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`.",
+    "Backend must remain a single Motoko actor with all logic in `backend/main.mo`; add `backend/migration.mo` only if an actual state migration is required."
   ],
   "nonGoals": [
-    "Sending email notifications when a user submits a contact form or rating (no email integration).",
-    "Integrating third-party cookie consent management platforms.",
-    "Adding social login providers other than Internet Identity."
+    "Do not redesign or regenerate the logo or favicon assets as part of this change.",
+    "Do not change the site’s services, contact details, inquiry/rating functionality, or admin permissions beyond what is necessary to rename the company and adjust the header size/layout."
   ],
   "imageRequirements": {
-    "required": [
-      "Short looping laptop/motherboard repair video clip (legend-techno-hero-bg-video.dim_1600x900.mp4)"
-    ],
+    "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

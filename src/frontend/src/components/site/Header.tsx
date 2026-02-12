@@ -30,19 +30,19 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
+        <div className="container flex h-20 md:h-24 items-center justify-between gap-4">
           <button
             onClick={() => setShowLogoLightbox(true)}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-            aria-label="View Legend Techno Solutions logo"
+            aria-label="View ALGLOE TECHNO SOLUTIONS logo"
           >
             <img
               src="/assets/generated/legend-techno-logo-v2.dim_512x512.png"
-              alt="Legend Techno Solutions"
-              className="h-10 w-10 object-contain"
+              alt="ALGLOE TECHNO SOLUTIONS"
+              className="h-12 w-12 md:h-14 md:w-14 object-contain flex-shrink-0"
             />
-            <span className="font-bold text-lg text-foreground hidden sm:inline">
-              Legend Techno Solutions
+            <span className="font-bold text-base sm:text-lg md:text-xl text-foreground leading-tight">
+              ALGLOE TECHNO SOLUTIONS
             </span>
           </button>
 
@@ -51,7 +51,7 @@ export default function Header() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:text-foreground"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:text-foreground whitespace-nowrap"
               >
                 {item.label}
               </button>
@@ -59,7 +59,7 @@ export default function Header() {
           </nav>
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild className="md:hidden">
+            <SheetTrigger asChild className="md:hidden flex-shrink-0">
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>

@@ -2,74 +2,14 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-an-animated-short-laptop-motherboard-repairing-video-as-the-home-page-hero-background-rendered-behind-the-existing-hero-content-with-a-readable-overlay-the-video-must-autoplay-muted-loop-and-play-inline-on-mobile-and-it-must-gracefully-fall-back-e-g-to-the-existing-hero-background-image-if-the-video-cannot-be-loaded",
-      "featureTitle": "Add an animated short laptop/motherboard repairing video as the Home page Hero background, rendered behind the existing Hero content with a readable overlay. The video must autoplay (muted), loop, and play inline on mobile, and it must gracefully fall back (e.g., to the existing hero background image) if the video cannot be loaded.",
-      "files": [
-        "frontend/src/components/sections/HeroSection.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-32"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-switch-the-site-to-use-a-dark-theme-by-default-across-the-marketing-pages-home-sections-and-admin-view-ensuring-text-borders-cards-and-ctas-have-sufficient-contrast-and-the-overall-look-is-consistently-dark",
-      "featureTitle": "Switch the site to use a dark theme by default across the marketing pages (Home sections) and Admin view, ensuring text, borders, cards, and CTAs have sufficient contrast and the overall look is consistently dark.",
+      "featureId": "feature-update-all-user-facing-occurrences-of-the-old-company-name-legend-techno-solutions-to-the-new-company-name-algloe-techno-solutions-across-the-marketing-site-ui-and-shared-metadata-including-at-minimum-header-branding-text-aria-label-alt-text-footer-branding-copyright-logo-lightbox-alt-text-and-the-html-document-title-meta-description-where-it-appears",
+      "featureTitle": "Update all user-facing occurrences of the old company name \"Legend Techno Solutions\" to the new company name \"ALGLOE TECHNO SOLUTIONS\" across the marketing site UI and shared metadata, including (at minimum) header branding text/aria-label/alt text, footer branding/copyright, logo lightbox alt text, and the HTML document title/meta description where it appears.",
       "files": [
         "frontend/index.html",
-        "frontend/src/index.css",
-        "frontend/src/pages/AdminPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-33"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-cookie-consent-notice-banner-that-appears-on-the-site-until-the-user-accepts-and-optionally-declines-persist-the-choice-locally-so-the-banner-does-not-reappear-on-subsequent-visits-and-include-clear-english-user-facing-text",
-      "featureTitle": "Add a cookie consent/notice banner that appears on the site until the user accepts (and optionally declines). Persist the choice locally so the banner does not reappear on subsequent visits, and include clear English user-facing text.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/site/CookieConsentBanner.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-34"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-public-website-rating-feature-for-legend-techno-solutions-so-visitors-can-submit-a-rating-e-g-1-5-stars-and-an-optional-comment-and-display-recent-ratings-on-the-marketing-site-near-the-end-of-the-home-page-after-the-contact-section",
-      "featureTitle": "Add a public website rating feature for Legend Techno Solutions so visitors can submit a rating (e.g., 1–5 stars) and an optional comment, and display recent ratings on the marketing site near the end of the Home page (after the Contact section).",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/sections/RatingsSection.tsx",
+        "frontend/src/components/sections/AboutSection.tsx",
         "frontend/src/components/site/Footer.tsx",
         "frontend/src/components/site/Header.tsx",
-        "frontend/src/hooks/useQueries.ts"
+        "frontend/src/components/site/LogoLightbox.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -80,16 +20,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-35"
+        "REQ-37"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-extend-the-admin-dashboard-to-allow-viewing-submitted-website-ratings-in-a-simple-table-list-most-recent-first-so-the-business-can-review-feedback",
-      "featureTitle": "Extend the Admin dashboard to allow viewing submitted website ratings in a simple table/list (most recent first) so the business can review feedback.",
+      "featureId": "feature-increase-the-header-s-overall-size-so-it-appears-visibly-larger-than-the-current-header-while-keeping-the-layout-responsive-and-ensuring-the-navigation-and-mobile-menu-remain-usable",
+      "featureTitle": "Increase the header’s overall size so it appears visibly larger than the current header, while keeping the layout responsive and ensuring the navigation and mobile menu remain usable.",
       "files": [
-        "frontend/src/hooks/useQueries.ts",
-        "frontend/src/pages/AdminPage.tsx"
+        "frontend/src/components/site/Header.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -100,7 +39,26 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-36"
+        "REQ-38"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-company-name-algloe-techno-solutions-is-prominently-shown-in-the-header-branding-area-next-to-near-the-logo-across-breakpoints-including-on-small-screens-do-not-hide-the-company-name-entirely-on-mobile",
+      "featureTitle": "Ensure the company name \"ALGLOE TECHNO SOLUTIONS\" is prominently shown in the header branding area (next to/near the logo) across breakpoints, including on small screens (do not hide the company name entirely on mobile).",
+      "files": [
+        "frontend/src/components/site/Header.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-39"
       ],
       "confidence": "high"
     }
