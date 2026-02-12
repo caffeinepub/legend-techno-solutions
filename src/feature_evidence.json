@@ -2,14 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-all-user-facing-occurrences-of-the-old-company-name-legend-techno-solutions-to-the-new-company-name-algloe-techno-solutions-across-the-marketing-site-ui-and-shared-metadata-including-at-minimum-header-branding-text-aria-label-alt-text-footer-branding-copyright-logo-lightbox-alt-text-and-the-html-document-title-meta-description-where-it-appears",
-      "featureTitle": "Update all user-facing occurrences of the old company name \"Legend Techno Solutions\" to the new company name \"ALGLOE TECHNO SOLUTIONS\" across the marketing site UI and shared metadata, including (at minimum) header branding text/aria-label/alt text, footer branding/copyright, logo lightbox alt text, and the HTML document title/meta description where it appears.",
+      "featureId": "feature-update-the-home-page-hero-stats-in-frontend-src-components-sections-herosection-tsx-so-that-clicking-the-years-experience-stat-and-the-happy-clients-stat-opens-a-modal-dialog-that-displays-the-numbers-1-through-1000-inclusive-in-a-scrollable-list",
+      "featureTitle": "Update the Home page Hero stats in `frontend/src/components/sections/HeroSection.tsx` so that clicking the \"Years Experience\" stat and the \"Happy Clients\" stat opens a modal/dialog that displays the numbers 1 through 1000 (inclusive) in a scrollable list.",
       "files": [
-        "frontend/index.html",
-        "frontend/src/components/sections/AboutSection.tsx",
-        "frontend/src/components/site/Footer.tsx",
-        "frontend/src/components/site/Header.tsx",
-        "frontend/src/components/site/LogoLightbox.tsx"
+        "frontend/src/components/sections/HeroSection.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -20,15 +16,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-37"
+        "REQ-62"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-increase-the-header-s-overall-size-so-it-appears-visibly-larger-than-the-current-header-while-keeping-the-layout-responsive-and-ensuring-the-navigation-and-mobile-menu-remain-usable",
-      "featureTitle": "Increase the header’s overall size so it appears visibly larger than the current header, while keeping the layout responsive and ensuring the navigation and mobile menu remain usable.",
+      "featureId": "feature-remove-the-24-7-stat-24-7-support-available-from-the-hero-stats-area-in-frontend-src-components-sections-herosection-tsx-and-ensure-the-stats-layout-remains-responsive-and-visually-balanced-after-removal",
+      "featureTitle": "Remove the \"24/7\" stat (\"24/7\" + \"Support Available\") from the Hero stats area in `frontend/src/components/sections/HeroSection.tsx`, and ensure the stats layout remains responsive and visually balanced after removal.",
       "files": [
-        "frontend/src/components/site/Header.tsx"
+        "frontend/src/components/sections/HeroSection.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -39,26 +35,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-38"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-company-name-algloe-techno-solutions-is-prominently-shown-in-the-header-branding-area-next-to-near-the-logo-across-breakpoints-including-on-small-screens-do-not-hide-the-company-name-entirely-on-mobile",
-      "featureTitle": "Ensure the company name \"ALGLOE TECHNO SOLUTIONS\" is prominently shown in the header branding area (next to/near the logo) across breakpoints, including on small screens (do not hide the company name entirely on mobile).",
-      "files": [
-        "frontend/src/components/site/Header.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-39"
+        "REQ-63"
       ],
       "confidence": "high"
     }

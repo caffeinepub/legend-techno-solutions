@@ -93,7 +93,7 @@ export default function AdminPage() {
             </Button>
             <div>
               <h1 className="text-xl font-bold">Admin Dashboard</h1>
-              <p className="text-sm text-muted-foreground">Legend Techno Solutions</p>
+              <p className="text-sm text-muted-foreground">ALGLOBE TECHNO SOLUTIONS</p>
             </div>
           </div>
           <LoginButton />

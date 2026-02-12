@@ -1,19 +1,26 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 31,
-  "summary": "Create an app/site for a computer & laptop repair plus CCTV/networking services company named \"ALGLOE TECHNO SOLUTIONS\".",
+  "projectStateVersion": 55,
+  "summary": "Create an app/site for a computer & laptop repair plus CCTV/networking services company named \"ALGLOBE TECHNO SOLUTIONS\".",
   "architectural_notes": [
     "Branding decision: use the uploaded dragon logo image as the new official Legend Techno Solutions logo (replace existing logo site-wide and align related branding assets as needed).",
     "Home page hero background should support a short looping video asset (optimize for performance and provide fallback for devices/browsers that can’t autoplay video).",
-    "Branding update: company name is now \"ALGLOE TECHNO SOLUTIONS\"; update all visible branding text accordingly.",
-    "Header UI update: make header larger and ensure company name is displayed in the header."
+    "Header UI update: make header larger and ensure company name is displayed in the header.",
+    "Branding update: company name is now \"ALGLOBE TECHNO SOLUTIONS\" (update all visible branding text accordingly, including About section and full website).",
+    "Branding update: replace the site-wide logo with the ALGLOBE TECHNO SOLUTIONS logo (update all logo placements and related branding assets as needed).",
+    "User feedback: current logo is not liked; plan to change/replace the logo site-wide (and update related branding assets as needed).",
+    "Branding update: replace the company/site logo with the user-provided picture (use it as the primary logo site-wide, including header/footer and any other logo placements).",
+    "When replacing/updating the logo image asset, use a cache-busting strategy (e.g., change the filename and update all references) to prevent browsers from continuing to show a cached old logo.",
+    "New logo direction: blue/black gradient background with a single white \"A\" letter featuring a shadow (use as primary site logo once generated/approved).",
+    "Add a Team page/section with a Founder profile (SWAROOP N) and a men/avatar logo image styled with a gray background and drop shadow."
   ],
   "known_issues": [
     "Build/deployment process failed during app creation; user requested retry.",
     "Contact form submission is failing in production with error message: \"failed send message try again\" (backend/API not reachable or returning error).",
     "Services section images are not displaying (service category pictures missing).",
     "User requested to \"fix the website\" (general fix request; specific failing areas not specified).",
-    "Admin panel access shows \"You do not have permission\" / \"Access Denied\" for the user (likely not logged in with the owner Internet Identity used during site creation)."
+    "Admin panel access shows \"You do not have permission\" / \"Access Denied\" for the user (likely not logged in with the owner Internet Identity used during site creation).",
+    "Users may still see the old logo after deployment due to browser caching of image assets; may require hard reload/incognito or cache-busted filename update."
   ],
   "isFixRequest": false,
   "existing_features": [
@@ -312,6 +319,190 @@
         "REQ-39"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-all-user-facing-occurrences-of-the-company-name-from-algloe-techno-solutions-to-alglobe-techno-solutions-across-the-full-website-including-the-about-section-header-footer-branding-text-logo-lightbox-accessibility-text-and-html-document-metadata-title-description-where-applicable",
+      "title": "Update all user-facing occurrences of the company name from \"ALGLOE TECHNO SOLUTIONS\" to \"ALGLOBE TECHNO SOLUTIONS\" across the full website, including the About section, header/footer branding text, logo lightbox accessibility text, and HTML document metadata (title/description where applicable).",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-site-logo-across-the-full-website-header-footer-and-logo-lightbox-to-use-a-new-alglobe-techno-solutions-logo-image-served-as-a-static-asset-from-frontend-public-assets-generated-and-update-all-logo-image-src-references-to-the-new-filename-s",
+      "title": "Replace the site logo across the full website (Header, Footer, and Logo lightbox) to use a new ALGLOBE TECHNO SOLUTIONS logo image served as a static asset from `frontend/public/assets/generated`, and update all logo image `src` references to the new filename(s).",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-favicon-app-icon-to-match-the-new-alglobe-techno-solutions-logo-by-adding-a-new-favicon-image-under-frontend-public-assets-generated-and-updating-frontend-index-html-icon-link-references-to-the-new-filename",
+      "title": "Update the favicon/app icon to match the new ALGLOBE TECHNO SOLUTIONS logo by adding a new favicon image under `frontend/public/assets/generated` and updating `frontend/index.html` icon link references to the new filename.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-new-alglobe-techno-solutions-logo-image-and-update-the-website-to-use-it-everywhere-the-current-logo-is-shown-header-footer-and-the-logo-lightbox-modal-replace-the-current-logo-asset-reference-assets-generated-alglobe-techno-logo-dim-512x512-png-with-the-new-logo-filename-consistently-and-ensure-all-alt-text-and-aria-label-text-remain-in-english-and-continue-to-reference-alglobe-techno-solutions",
+      "title": "Generate a new ALGLOBE TECHNO SOLUTIONS logo image and update the website to use it everywhere the current logo is shown (Header, Footer, and the Logo lightbox modal). Replace the current logo asset reference `/assets/generated/alglobe-techno-logo.dim_512x512.png` with the new logo filename consistently, and ensure all alt text and aria-label text remain in English and continue to reference \"ALGLOBE TECHNO SOLUTIONS\".",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-new-favicon-app-icon-that-matches-the-new-logo-and-update-frontend-index-html-to-reference-the-new-favicon-filename-instead-of-assets-generated-alglobe-techno-favicon-dim-128x128-png",
+      "title": "Generate a new favicon/app icon that matches the new logo and update `frontend/index.html` to reference the new favicon filename instead of `/assets/generated/alglobe-techno-favicon.dim_128x128.png`.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-image-file-1000025004-9440e6c9e5942710b0f8d003c37ca8eb-12-20-2024-1-39-20-pm-png-to-the-frontend-static-assets-under-frontend-public-assets-generated-as-the-new-primary-site-logo-image-using-a-stable-url-safe-filename",
+      "title": "Add the user-uploaded image file (\"1000025004_9440e6c9e5942710b0f8d003c37ca8eb-12_20_2024, 1_39_20 PM.png\") to the frontend static assets under `frontend/public/assets/generated/` as the new primary site logo image, using a stable, URL-safe filename.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-existing-site-logo-usages-to-use-the-new-uploaded-logo-asset-including-the-header-logo-image-footer-logo-image-and-the-logolightbox-enlarged-logo-image-replacing-the-current-references-to-assets-generated-alglobe-techno-logo-v2-dim-512x512-png",
+      "title": "Update all existing site logo usages to use the new uploaded logo asset, including the Header logo image, Footer logo image, and the LogoLightbox enlarged logo image, replacing the current references to `/assets/generated/alglobe-techno-logo-v2.dim_512x512.png`.",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-all-user-facing-accessibility-text-for-the-logo-in-english-and-consistent-with-the-current-company-name-alglobe-techno-solutions-e-g-alt-text-and-aria-label-values-in-header-footer-and-logolightbox",
+      "title": "Keep all user-facing accessibility text for the logo in English and consistent with the current company name \"ALGLOBE TECHNO SOLUTIONS\" (e.g., `alt` text and `aria-label` values in Header, Footer, and LogoLightbox).",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-only-the-header-logo-img-element-xpath-html-1-body-1-div-1-div-1-header-1-div-1-button-1-img-1-to-use-the-newly-uploaded-image-file-1000025004-9440e6c9e5942710b0f8d003c37ca8eb-12-20-2024-1-39-20-pm-1-png-add-the-uploaded-image-to-frontend-public-assets-generated-using-a-stable-url-safe-filename-and-update-frontend-src-components-site-header-tsx-so-the-src-of-that-specific-img-points-to-the-new-asset-path-keep-the-existing-alt-text-in-english-alglobe-techno-solutions-unchanged",
+      "title": "Replace ONLY the Header logo <img> element (XPath: /html[1]/body[1]/div[1]/div[1]/header[1]/div[1]/button[1]/img[1]) to use the newly uploaded image file \"1000025004_9440e6c9e5942710b0f8d003c37ca8eb-12_20_2024, 1_39_20 PM-1.png\". Add the uploaded image to `frontend/public/assets/generated/` using a stable, URL-safe filename, and update `frontend/src/components/site/Header.tsx` so the `src` of that specific `<img>` points to the new asset path. Keep the existing `alt` text in English (\"ALGLOBE TECHNO SOLUTIONS\") unchanged.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-only-the-header-logo-img-element-at-xpath-html-1-body-1-div-1-div-1-header-1-div-1-button-1-img-1-by-updating-its-src-to-point-to-an-existing-logo-asset-under-frontend-public-assets-generated-use-the-same-filename-already-used-by-footer-logolightbox-assets-generated-alglobe-techno-logo-uploaded-dim-512x512-png-so-the-header-logo-reliably-renders-and-does-not-break-deploy-build-due-to-missing-static-files-do-not-change-the-alt-text-keep-it-in-english-alglobe-techno-solutions",
+      "title": "Fix ONLY the Header logo <img> element at XPath `/html[1]/body[1]/div[1]/div[1]/header[1]/div[1]/button[1]/img[1]` by updating its `src` to point to an existing logo asset under `frontend/public/assets/generated/` (use the same filename already used by Footer/LogoLightbox: `/assets/generated/alglobe-techno-logo-uploaded.dim_512x512.png`) so the header logo reliably renders and does not break deploy/build due to missing static files. Do not change the `alt` text (keep it in English: \"ALGLOBE TECHNO SOLUTIONS\").",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-new-square-logo-image-with-a-blue-to-black-gradient-background-and-a-single-white-letter-a-with-a-visible-shadow-and-add-it-as-a-static-asset-under-frontend-public-assets-generated-using-the-exact-required-filename",
+      "title": "Generate a new square logo image with a blue-to-black gradient background and a single white letter “A” with a visible shadow, and add it as a static asset under `frontend/public/assets/generated/` using the exact required filename.",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-site-to-use-the-new-logo-image-everywhere-the-current-logo-is-used-header-frontend-src-components-site-header-tsx-footer-frontend-src-components-site-footer-tsx-and-the-enlarged-logolightbox-view-frontend-src-components-site-logolightbox-tsx",
+      "title": "Update the site to use the new logo image everywhere the current logo is used: Header (`frontend/src/components/site/Header.tsx`), Footer (`frontend/src/components/site/Footer.tsx`), and the enlarged LogoLightbox view (`frontend/src/components/site/LogoLightbox.tsx`).",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-matching-favicon-app-icon-based-on-the-new-logo-and-update-frontend-index-html-to-reference-the-new-favicon-filenames-instead-of-the-current-assets-generated-alglobe-techno-favicon-v2-dim-128x128-png",
+      "title": "Generate a matching favicon/app icon based on the new logo and update `frontend/index.html` to reference the new favicon filenames instead of the current `/assets/generated/alglobe-techno-favicon-v2.dim_128x128.png`.",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-team-page-view-reachable-via-hash-routing-at-team-and-render-it-as-a-full-page-header-main-content-footer-consistent-with-the-existing-site-theme",
+      "title": "Add a new Team page view reachable via hash routing at `#/team`, and render it as a full page (header + main content + footer) consistent with the existing site theme.",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-team-navigation-entry-so-users-can-reach-the-team-page-from-the-site-header-and-footer-using-english-link-text-team",
+      "title": "Add a Team navigation entry so users can reach the Team page from the site header and footer, using English link text \"Team\".",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-team-page-ui-content-showing-a-single-team-member-card-for-the-founder-with-the-name-text-exactly-swaroop-n-and-a-role-label-founder-user-facing-text-in-english",
+      "title": "Create the Team page UI content showing a single team member card for the founder with the name text exactly \"SWAROOP N\" and a role label \"Founder\" (user-facing text in English).",
+      "reqIds": [
+        "REQ-56"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-a-male-avatar-logo-image-on-the-team-page-for-the-founder-using-a-gray-background-and-a-visible-shadow-effect-as-part-of-the-image-styling-and-ensure-the-image-is-loaded-from-frontend-public-assets-generated",
+      "title": "Display a male avatar/logo image on the Team page for the founder, using a gray background and a visible shadow effect as part of the image styling, and ensure the image is loaded from `frontend/public/assets/generated/`.",
+      "reqIds": [
+        "REQ-57"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-credit-line-to-replace-the-current-built-with-using-caffeine-ai-text-link-with-built-with-using-alglobe-english-text-so-the-footer-no-longer-displays-or-links-to-caffeine-ai",
+      "title": "Update the footer credit line to replace the current “Built with … using caffeine.ai” text/link with “Built with … using alglobe” (English text), so the footer no longer displays or links to caffeine.ai.",
+      "reqIds": [
+        "REQ-58"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-site-logo-image-asset-to-match-the-requested-style-a-blue-to-black-gradient-background-with-a-single-stylish-white-letter-a-no-border-with-a-visible-shadow-and-glossy-finish-while-keeping-the-existing-filename-so-current-header-footer-logolightbox-references-continue-to-work",
+      "title": "Update the existing site logo image asset to match the requested style: a blue-to-black gradient background with a single stylish white letter “A”, no border, with a visible shadow and glossy finish, while keeping the existing filename so current Header/Footer/LogoLightbox references continue to work.",
+      "reqIds": [
+        "REQ-59"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-favicon-app-icon-asset-to-match-the-updated-logo-style-blue-to-black-gradient-with-a-glossy-shadowed-white-a-no-border-keeping-the-existing-filename-so-current-index-html-references-continue-to-work",
+      "title": "Update the existing favicon/app icon asset to match the updated logo style (blue-to-black gradient with a glossy, shadowed white “A”, no border), keeping the existing filename so current `index.html` references continue to work.",
+      "reqIds": [
+        "REQ-60"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-subtle-performance-friendly-soft-pulse-hover-focus-effect-to-the-site-logo-in-the-header-and-footer-so-that-when-the-user-hovers-or-keyboard-focuses-the-logo-trigger-the-logo-gently-scales-pulses-without-changing-layout-or-affecting-surrounding-content",
+      "title": "Add a subtle, performance-friendly soft pulse hover/focus effect to the site logo in the Header and Footer so that when the user hovers (or keyboard-focuses) the logo trigger, the logo gently scales/pulses without changing layout or affecting surrounding content.",
+      "reqIds": [
+        "REQ-61"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-hero-stats-in-frontend-src-components-sections-herosection-tsx-so-that-clicking-the-years-experience-stat-and-the-happy-clients-stat-opens-a-modal-dialog-that-displays-the-numbers-1-through-1000-inclusive-in-a-scrollable-list",
+      "title": "Update the Home page Hero stats in `frontend/src/components/sections/HeroSection.tsx` so that clicking the \"Years Experience\" stat and the \"Happy Clients\" stat opens a modal/dialog that displays the numbers 1 through 1000 (inclusive) in a scrollable list.",
+      "reqIds": [
+        "REQ-62"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-24-7-stat-24-7-support-available-from-the-hero-stats-area-in-frontend-src-components-sections-herosection-tsx-and-ensure-the-stats-layout-remains-responsive-and-visually-balanced-after-removal",
+      "title": "Remove the \"24/7\" stat (\"24/7\" + \"Support Available\") from the Hero stats area in `frontend/src/components/sections/HeroSection.tsx`, and ensure the stats layout remains responsive and visually balanced after removal.",
+      "reqIds": [
+        "REQ-63"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -440,10 +631,46 @@
         "REQ-40"
       ],
       "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Replace/redesign the current ALGLOBE TECHNO SOLUTIONS logo with a different logo (user dislikes the current one) and update it site-wide (header/footer/favicon as applicable).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Design/generate a new logo: blue-to-black gradient background with a single white letter \"A\" (with shadow) and update the site to use it as the primary logo (header/footer/favicon as applicable).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Create a Team page featuring Founder “SWAROOP N” and display a men logo/avatar image with a gray background and shadow.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Update the site footer/credits text from \"Built with ...\" (caffeine,ai) to \"alglobe\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Add a soft pulse hover animation effect to the site logo (e.g., on header/footer/logo lightbox trigger) while keeping styling subtle and performance-friendly.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-35",
+      "summary": "Make clicking the Home page stats (\"Happy Client\" and \"10+ Years Experience\") open a detailed view showing a range/count from 1 to 1000, and remove \"24/7\" wherever it appears (e.g., business hours).",
+      "reqIds": [],
+      "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "ALGLOE TECHNO SOLUTIONS",
+  "projectName": "ALGLOBE TECHNO SOLUTIONS",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

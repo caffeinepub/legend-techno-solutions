@@ -14,10 +14,6 @@ export interface WebsiteRating {
     rating: bigint;
 }
 export type Time = bigint;
-export interface BusinessHours {
-    hours: string;
-    days: string;
-}
 export interface SiteContent {
     businessHours: BusinessHours;
     aboutHeading: string;
@@ -36,8 +32,9 @@ export interface ContactInquiry {
     message: string;
     timestamp: Time;
 }
-export interface UserProfile {
-    name: string;
+export interface BusinessHours {
+    hours: string;
+    days: string;
 }
 export enum UserRole {
     admin = "admin",
@@ -50,14 +47,11 @@ export interface backendInterface {
     getAllInquiries(): Promise<Array<ContactInquiry>>;
     getAllRatings(): Promise<Array<WebsiteRating>>;
     getAverageRating(): Promise<number | null>;
-    getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getInquiry(id: bigint): Promise<ContactInquiry | null>;
     getRecentRatings(limit: bigint): Promise<Array<WebsiteRating>>;
     getSiteContent(): Promise<SiteContent>;
-    getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
-    saveCallerUserProfile(profile: UserProfile): Promise<void>;
     submitRating(rating: bigint, comment: string | null): Promise<void>;
     updateSiteContent(newContent: SiteContent): Promise<void>;
 }

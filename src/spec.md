@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Rename the company across the site to “ALGLOE TECHNO SOLUTIONS” and make the header larger with the company name prominently visible on all screen sizes.
+**Goal:** Make the “Years Experience” and “Happy Clients” hero stats clickable to open a modal showing a scrollable list of numbers 1–1000, and remove the “24/7 Support Available” stat.
 
 **Planned changes:**
-- Replace all user-facing occurrences of “Legend Techno Solutions” with “ALGLOE TECHNO SOLUTIONS” across the marketing site UI and shared metadata (header/footer branding text, aria-label/alt text including logo lightbox, and `frontend/index.html` title/meta description where applicable).
-- Increase the header’s overall size (container height and/or logo/text sizing) while keeping navigation responsive, unclipped on desktop, and the mobile menu usable without overlapping page content.
-- Ensure “ALGLOE TECHNO SOLUTIONS” is always visible in the header branding area across breakpoints (including mobile), while preserving existing logo click/tap lightbox behavior.
-- Update backend `defaultSiteContent()` defaults to use “ALGLOE TECHNO SOLUTIONS” wherever the old name appears, without migrating or altering already-stored site content.
+- Update `frontend/src/components/sections/HeroSection.tsx` so the “Years Experience” and “Happy Clients” stat blocks are clickable/tappable and open a modal/dialog without leaving the page.
+- Implement the modal content as a visible, scrollable list displaying numbers 1 through 1000 (inclusive), sized to avoid viewport overflow on mobile/desktop, with close controls (and Escape-to-close if supported by existing patterns).
+- Remove the “24/7” / “Support Available” stat from the hero stats area and adjust the layout so it remains responsive and visually balanced with the remaining stats.
 
-**User-visible outcome:** The site consistently shows “ALGLOE TECHNO SOLUTIONS” (including page title/metadata), and the header is visibly larger with the company name clearly displayed next to/near the logo on both desktop and mobile.
+**User-visible outcome:** On the Home page, users can click “Years Experience” or “Happy Clients” to open a closable modal showing a scrollable list of numbers from 1 to 1000, and the “24/7 Support Available” stat is no longer shown.

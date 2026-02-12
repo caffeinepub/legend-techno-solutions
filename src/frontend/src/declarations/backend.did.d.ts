@@ -30,7 +30,6 @@ export interface SiteContent {
   'aboutDescription' : string,
 }
 export type Time = bigint;
-export interface UserProfile { 'name' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
@@ -47,14 +46,11 @@ export interface _SERVICE {
   'getAllInquiries' : ActorMethod<[], Array<ContactInquiry>>,
   'getAllRatings' : ActorMethod<[], Array<WebsiteRating>>,
   'getAverageRating' : ActorMethod<[], [] | [number]>,
-  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getInquiry' : ActorMethod<[bigint], [] | [ContactInquiry]>,
   'getRecentRatings' : ActorMethod<[bigint], Array<WebsiteRating>>,
   'getSiteContent' : ActorMethod<[], SiteContent>,
-  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
-  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'submitRating' : ActorMethod<[bigint, [] | [string]], undefined>,
   'updateSiteContent' : ActorMethod<[SiteContent], undefined>,
 }

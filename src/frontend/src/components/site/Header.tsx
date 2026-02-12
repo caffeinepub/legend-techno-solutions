@@ -9,22 +9,38 @@ export default function Header() {
   const [showLogoLightbox, setShowLogoLightbox] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
+    // If not on home page, navigate to home first
+    if (window.location.hash !== '' && window.location.hash !== '#/') {
+      window.location.hash = '/';
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     } else {
-      console.warn(`Section with id "${sectionId}" not found`);
-      setIsOpen(false);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        console.warn(`Section with id "${sectionId}" not found`);
+      }
     }
+    setIsOpen(false);
+  };
+
+  const navigateToTeam = () => {
+    window.location.hash = '/team';
+    setIsOpen(false);
   };
 
   const navItems = [
-    { label: 'Home', id: 'hero' },
-    { label: 'Services', id: 'services' },
-    { label: 'About', id: 'about' },
-    { label: 'Contact', id: 'contact' },
-    { label: 'Ratings', id: 'ratings' },
+    { label: 'Home', id: 'hero', type: 'scroll' as const },
+    { label: 'Services', id: 'services', type: 'scroll' as const },
+    { label: 'About', id: 'about', type: 'scroll' as const },
+    { label: 'Contact', id: 'contact', type: 'scroll' as const },
+    { label: 'Ratings', id: 'ratings', type: 'scroll' as const },
+    { label: 'Team', id: 'team', type: 'navigate' as const },
   ];
 
   return (
@@ -33,16 +49,16 @@ export default function Header() {
         <div className="container flex h-20 md:h-24 items-center justify-between gap-4">
           <button
             onClick={() => setShowLogoLightbox(true)}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-            aria-label="View ALGLOE TECHNO SOLUTIONS logo"
+            className="logo-pulse-trigger flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+            aria-label="View ALGLOBE TECHNO SOLUTIONS logo"
           >
             <img
-              src="/assets/generated/legend-techno-logo-v2.dim_512x512.png"
-              alt="ALGLOE TECHNO SOLUTIONS"
-              className="h-12 w-12 md:h-14 md:w-14 object-contain flex-shrink-0"
+              src="/assets/generated/alglobe-techno-logo-A-gradient.dim_512x512.png"
+              alt="ALGLOBE TECHNO SOLUTIONS"
+              className="logo-pulse-image h-12 w-12 md:h-14 md:w-14 object-contain flex-shrink-0"
             />
             <span className="font-bold text-base sm:text-lg md:text-xl text-foreground leading-tight">
-              ALGLOE TECHNO SOLUTIONS
+              ALGLOBE TECHNO SOLUTIONS
             </span>
           </button>
 
@@ -50,7 +66,7 @@ export default function Header() {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => item.type === 'navigate' ? navigateToTeam() : scrollToSection(item.id)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:text-foreground whitespace-nowrap"
               >
                 {item.label}
@@ -70,7 +86,7 @@ export default function Header() {
                 {navItems.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => scrollToSection(item.id)}
+                    onClick={() => item.type === 'navigate' ? navigateToTeam() : scrollToSection(item.id)}
                     className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors text-left focus:outline-none focus:text-foreground"
                   >
                     {item.label}

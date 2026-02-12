@@ -27,7 +27,6 @@ export const WebsiteRating = IDL.Record({
   'timestamp' : Time,
   'rating' : IDL.Nat,
 });
-export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 export const BusinessHours = IDL.Record({
   'hours' : IDL.Text,
   'days' : IDL.Text,
@@ -51,18 +50,11 @@ export const idlService = IDL.Service({
   'getAllInquiries' : IDL.Func([], [IDL.Vec(ContactInquiry)], ['query']),
   'getAllRatings' : IDL.Func([], [IDL.Vec(WebsiteRating)], ['query']),
   'getAverageRating' : IDL.Func([], [IDL.Opt(IDL.Float64)], ['query']),
-  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getInquiry' : IDL.Func([IDL.Nat], [IDL.Opt(ContactInquiry)], ['query']),
   'getRecentRatings' : IDL.Func([IDL.Nat], [IDL.Vec(WebsiteRating)], ['query']),
   'getSiteContent' : IDL.Func([], [SiteContent], ['query']),
-  'getUserProfile' : IDL.Func(
-      [IDL.Principal],
-      [IDL.Opt(UserProfile)],
-      ['query'],
-    ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
-  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'submitRating' : IDL.Func([IDL.Nat, IDL.Opt(IDL.Text)], [], []),
   'updateSiteContent' : IDL.Func([SiteContent], [], []),
 });
@@ -89,7 +81,6 @@ export const idlFactory = ({ IDL }) => {
     'timestamp' : Time,
     'rating' : IDL.Nat,
   });
-  const UserProfile = IDL.Record({ 'name' : IDL.Text });
   const BusinessHours = IDL.Record({ 'hours' : IDL.Text, 'days' : IDL.Text });
   const SiteContent = IDL.Record({
     'businessHours' : BusinessHours,
@@ -110,7 +101,6 @@ export const idlFactory = ({ IDL }) => {
     'getAllInquiries' : IDL.Func([], [IDL.Vec(ContactInquiry)], ['query']),
     'getAllRatings' : IDL.Func([], [IDL.Vec(WebsiteRating)], ['query']),
     'getAverageRating' : IDL.Func([], [IDL.Opt(IDL.Float64)], ['query']),
-    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getInquiry' : IDL.Func([IDL.Nat], [IDL.Opt(ContactInquiry)], ['query']),
     'getRecentRatings' : IDL.Func(
@@ -119,13 +109,7 @@ export const idlFactory = ({ IDL }) => {
         ['query'],
       ),
     'getSiteContent' : IDL.Func([], [SiteContent], ['query']),
-    'getUserProfile' : IDL.Func(
-        [IDL.Principal],
-        [IDL.Opt(UserProfile)],
-        ['query'],
-      ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
-    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'submitRating' : IDL.Func([IDL.Nat, IDL.Opt(IDL.Text)], [], []),
     'updateSiteContent' : IDL.Func([SiteContent], [], []),
   });

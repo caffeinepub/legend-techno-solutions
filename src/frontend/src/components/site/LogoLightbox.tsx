@@ -34,7 +34,7 @@ export default function LogoLightbox({ isOpen, onClose }: LogoLightboxProps) {
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label="ALGLOE TECHNO SOLUTIONS logo enlarged view"
+      aria-label="ALGLOBE TECHNO SOLUTIONS logo enlarged view"
     >
       <div className="relative max-w-[90vw] max-h-[90vh] p-4">
         <Button
@@ -47,8 +47,8 @@ export default function LogoLightbox({ isOpen, onClose }: LogoLightboxProps) {
           <X className="h-5 w-5" />
         </Button>
         <img
-          src="/assets/generated/legend-techno-logo-uploaded.dim_512x512.png"
-          alt="ALGLOE TECHNO SOLUTIONS Logo"
+          src="/assets/generated/alglobe-techno-logo-A-gradient.dim_512x512.png"
+          alt="ALGLOBE TECHNO SOLUTIONS Logo"
           className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
           onClick={(e) => e.stopPropagation()}
         />

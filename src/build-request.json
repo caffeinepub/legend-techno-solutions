@@ -1,92 +1,67 @@
 {
   "kind": "build_request",
-  "title": "Rename company to ALGLOE TECHNO SOLUTIONS and enlarge header with prominent name",
+  "title": "Make Hero stats clickable to show 1–1000 and remove 24/7 stat",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-37",
-      "text": "Update all user-facing occurrences of the old company name \"Legend Techno Solutions\" to the new company name \"ALGLOE TECHNO SOLUTIONS\" across the marketing site UI and shared metadata, including (at minimum) header branding text/aria-label/alt text, footer branding/copyright, logo lightbox alt text, and the HTML document title/meta description where it appears.",
+      "id": "REQ-62",
+      "text": "Update the Home page Hero stats in `frontend/src/components/sections/HeroSection.tsx` so that clicking the \"Years Experience\" stat and the \"Happy Clients\" stat opens a modal/dialog that displays the numbers 1 through 1000 (inclusive) in a scrollable list.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "recent-messages-10"
         ],
         "quotes": [
-          "change the company name , company name is ALGLOE TECHNO SOLUTIONS"
+          "if i click happy clint and 10+years experience it need to open and show 1 to 1000"
         ]
       },
       "acceptanceCriteria": [
-        "Header displays the company name exactly as \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" text in the header).",
-        "Footer branding/copyright uses \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" text in the footer).",
-        "Logo-related accessible text (e.g., aria-label/alt) uses \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" accessible strings in these components).",
-        "`frontend/index.html` `<title>` (and any meta description text that includes the company name) is updated to reference \"ALGLOE TECHNO SOLUTIONS\"."
+        "On the Home page Hero section, both the \"Years Experience\" and \"Happy Clients\" stat blocks are clickable/tappable.",
+        "Clicking either stat opens a modal/dialog without navigating away from the page.",
+        "The opened modal shows a visible list of numbers from 1 to 1000 inclusive.",
+        "The list is scrollable and does not overflow the viewport on mobile or desktop.",
+        "The modal can be closed via an explicit close control and by pressing Escape (if using the existing dialog/modal patterns).",
+        "All user-facing text added for this feature is in English."
       ]
     },
     {
-      "id": "REQ-38",
-      "text": "Increase the header’s overall size so it appears visibly larger than the current header, while keeping the layout responsive and ensuring the navigation and mobile menu remain usable.",
+      "id": "REQ-63",
+      "text": "Remove the \"24/7\" stat (\"24/7\" + \"Support Available\") from the Hero stats area in `frontend/src/components/sections/HeroSection.tsx`, and ensure the stats layout remains responsive and visually balanced after removal.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "recent-messages-10"
         ],
         "quotes": [
-          "And header size make bigger"
+          "and remove 24/7"
         ]
       },
       "acceptanceCriteria": [
-        "The header height is increased compared to the current implementation (e.g., larger container height and/or increased logo/text sizing) and remains visually consistent in dark theme.",
-        "On desktop widths, the navigation links remain on a single line and are not clipped.",
-        "On mobile widths, the menu button remains visible and functional, and the header does not overlap page content."
-      ]
-    },
-    {
-      "id": "REQ-39",
-      "text": "Ensure the company name \"ALGLOE TECHNO SOLUTIONS\" is prominently shown in the header branding area (next to/near the logo) across breakpoints, including on small screens (do not hide the company name entirely on mobile).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          "and mention the company name in header"
-        ]
-      },
-      "acceptanceCriteria": [
-        "On mobile and desktop, the header displays the text \"ALGLOE TECHNO SOLUTIONS\" in the branding area without requiring opening the menu.",
-        "If space is constrained on very small screens, the company name may wrap, truncate, or reduce font size, but it must remain visible and readable (not fully hidden).",
-        "The logo click/tap behavior (opening the logo lightbox) continues to work as before."
-      ]
-    },
-    {
-      "id": "REQ-40",
-      "text": "Update the Motoko backend default site content so that a fresh deploy (or empty state) uses \"ALGLOE TECHNO SOLUTIONS\" in the default SiteContent fields where the old company name appears (e.g., hero heading and about heading/description). Do not change existing stored site content values for already-deployed canisters.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          "change the company name , company name is ALGLOE TECHNO SOLUTIONS"
-        ]
-      },
-      "acceptanceCriteria": [
-        "`defaultSiteContent()` no longer contains the string \"Legend Techno Solutions\" and uses \"ALGLOE TECHNO SOLUTIONS\" in the appropriate default fields.",
-        "No migration is introduced unless strictly required by a schema/state change (this change should be default-only and not require migration).",
-        "After deployment, if site content has already been customized via the admin editor, those stored values remain unchanged."
+        "The Hero section no longer displays \"24/7\" or \"Support Available\" anywhere in the stats row/grid.",
+        "The stats grid remains responsive across breakpoints (no broken spacing/alignment after removing the third item)."
       ]
     }
   ],
   "constraints": [
     "Frontend immutable paths must not be edited: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`.",
-    "Backend must remain a single Motoko actor with all logic in `backend/main.mo`; add `backend/migration.mo` only if an actual state migration is required."
+    "Keep changes limited to implementing the requested Hero stat click behavior and removing the \"24/7\" stat; do not alter unrelated content or backend APIs."
   ],
   "nonGoals": [
-    "Do not redesign or regenerate the logo or favicon assets as part of this change.",
-    "Do not change the site’s services, contact details, inquiry/rating functionality, or admin permissions beyond what is necessary to rename the company and adjust the header size/layout."
+    "Do not add or change backend data models/APIs for this feature.",
+    "Do not change the existing hero heading/subheading content loading behavior from site content."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

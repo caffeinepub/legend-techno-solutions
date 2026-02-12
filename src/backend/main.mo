@@ -2,46 +2,21 @@ import Map "mo:core/Map";
 import Time "mo:core/Time";
 import Int "mo:core/Int";
 import Array "mo:core/Array";
-import Principal "mo:core/Principal";
+import Nat "mo:core/Nat";
 import Order "mo:core/Order";
 import Runtime "mo:core/Runtime";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 
+
+// Perform explicit migration to drop userProfiles.
+
 actor {
-  // Authorization
+  // Authorization.
   let accessControlState = AccessControl.initState();
   include MixinAuthorization(accessControlState);
 
-  // User Profile Management
-  public type UserProfile = {
-    name : Text;
-  };
-
-  let userProfiles = Map.empty<Principal, UserProfile>();
-
-  public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
-    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only users can access profiles");
-    };
-    userProfiles.get(caller);
-  };
-
-  public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
-    if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
-      Runtime.trap("Unauthorized: Can only view your own profile");
-    };
-    userProfiles.get(user);
-  };
-
-  public shared ({ caller }) func saveCallerUserProfile(profile : UserProfile) : async () {
-    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only users can save profiles");
-    };
-    userProfiles.add(caller, profile);
-  };
-
-  // Contact Inquiry Management
+  // Contact Inquiry Management.
   type ContactInquiry = {
     id : Nat;
     name : Text;
@@ -58,6 +33,7 @@ actor {
 
   let inquiries = Map.empty<Nat, ContactInquiry>();
   var nextId = 0;
+  var nextRatingId = 0;
 
   func getNextId() : Nat {
     let id = nextId;
@@ -66,7 +42,7 @@ actor {
   };
 
   public shared ({ caller }) func createInquiry(name : Text, email : Text, message : Text) : async () {
-    // No authorization check - public contact form accessible to everyone including guests
+    // No authorization check - public contact form accessible to everyone including guests.
     let id = getNextId();
     let inquiry : ContactInquiry = {
       id;
@@ -92,7 +68,7 @@ actor {
     inquiries.get(id);
   };
 
-  // Data-Driven Site Content Management
+  // Data-Driven Site Content Management.
   public type BusinessHours = {
     days : Text;
     hours : Text;
@@ -112,12 +88,12 @@ actor {
 
   func defaultSiteContent() : SiteContent {
     {
-      heroHeading = "ALGLOE TECHNO SOLUTIONS";
+      heroHeading = "ALGLOBE TECHNO SOLUTIONS";
       heroSubheading = "Empowering Your Digital Future";
       servicesHeading = "Our Services";
       servicesDescription = "We offer a range of services including digital transformation consulting, cloud solutions, and IT support.";
-      aboutHeading = "About ALGLOE TECHNO SOLUTIONS";
-      aboutDescription = "ALGLOE Technology Solutions is dedicated to helping businesses achieve their digital goals with innovative and reliable technology solutions.";
+      aboutHeading = "About ALGLOBE TECHNO SOLUTIONS";
+      aboutDescription = "ALGLOBE Technology Solutions is dedicated to helping businesses achieve their digital goals with innovative and reliable technology solutions.";
       contactHeading = "Get in Touch";
       contactSubheading = "Contact us to discuss how we can help your business thrive in the digital age.";
       businessHours = {
@@ -130,7 +106,7 @@ actor {
   var siteContent : SiteContent = defaultSiteContent();
 
   public query ({ caller }) func getSiteContent() : async SiteContent {
-    // No authorization check - public content for marketing site
+    // No authorization check - public content for marketing site.
     siteContent;
   };
 
@@ -141,7 +117,7 @@ actor {
     siteContent := newContent;
   };
 
-  // Website Rating Feature
+  // Website Rating Feature.
   public type WebsiteRating = {
     id : Nat;
     rating : Nat; // 1-5
@@ -156,7 +132,6 @@ actor {
   };
 
   let ratings = Map.empty<Nat, WebsiteRating>();
-  var nextRatingId = 0;
 
   func getNextRatingId() : Nat {
     let id = nextRatingId;
@@ -165,7 +140,7 @@ actor {
   };
 
   public shared ({ caller }) func submitRating(rating : Nat, comment : ?Text) : async () {
-    // No authorization check - public feature accessible to everyone including guests
+    // No authorization check - public feature accessible to everyone including guests.
     if (rating < 1 or rating > 5) {
       Runtime.trap("Invalid rating. Must be between 1 and 5.");
     };
@@ -188,7 +163,7 @@ actor {
   };
 
   public query ({ caller }) func getRecentRatings(limit : Nat) : async [WebsiteRating] {
-    // No authorization check - public feature for marketing site display
+    // No authorization check - public feature for marketing site display.
     let sortedRatings = ratings.values().toArray().sort(WebsiteRating.compareByTimestamp);
     let actualLimit = if (limit > 0 and limit < sortedRatings.size()) { limit } else {
       sortedRatings.size();
@@ -197,7 +172,7 @@ actor {
   };
 
   public query ({ caller }) func getAverageRating() : async ?Float {
-    // No authorization check - public feature for marketing site display
+    // No authorization check - public feature for marketing site display.
     let numRatings = ratings.size();
     if (numRatings == 0) {
       return null;

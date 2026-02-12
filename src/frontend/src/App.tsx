@@ -7,12 +7,13 @@ import AboutSection from './components/sections/AboutSection';
 import ContactSection from './components/sections/ContactSection';
 import RatingsSection from './components/sections/RatingsSection';
 import AdminPage from './pages/AdminPage';
+import TeamPage from './pages/TeamPage';
 import CookieConsentBanner from './components/site/CookieConsentBanner';
 import { Toaster } from '@/components/ui/sonner';
 import { useGetSiteContent } from './hooks/useSiteContent';
 
 function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'admin'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'admin' | 'team'>('home');
   const { data: siteContent } = useGetSiteContent();
 
   useEffect(() => {
@@ -23,6 +24,8 @@ function App() {
       
       if (normalizedHash === '/admin') {
         setCurrentView('admin');
+      } else if (normalizedHash === '/team') {
+        setCurrentView('team');
       } else {
         // Any other hash (including empty, unknown routes) goes to home
         setCurrentView('home');
@@ -40,6 +43,20 @@ function App() {
         <AdminPage />
         <Toaster />
       </>
+    );
+  }
+
+  if (currentView === 'team') {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">
+          <TeamPage />
+        </main>
+        <Footer />
+        <CookieConsentBanner />
+        <Toaster />
+      </div>
     );
   }
 

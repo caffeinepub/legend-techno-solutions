@@ -7,18 +7,30 @@ export default function Footer() {
   const [showLogoLightbox, setShowLogoLightbox] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // If not on home page, navigate to home first
+    if (window.location.hash !== '' && window.location.hash !== '#/') {
+      window.location.hash = '/';
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     } else {
-      console.warn(`Section with id "${sectionId}" not found`);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        console.warn(`Section with id "${sectionId}" not found`);
+      }
     }
   };
 
+  const navigateToTeam = () => {
+    window.location.hash = '/team';
+  };
+
   const currentYear = new Date().getFullYear();
-  const appIdentifier = encodeURIComponent(
-    typeof window !== 'undefined' ? window.location.hostname : 'algloe-techno'
-  );
 
   return (
     <>
@@ -28,16 +40,16 @@ export default function Footer() {
             <div className="space-y-4">
               <button
                 onClick={() => setShowLogoLightbox(true)}
-                className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-                aria-label="View ALGLOE TECHNO SOLUTIONS logo"
+                className="logo-pulse-trigger flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+                aria-label="View ALGLOBE TECHNO SOLUTIONS logo"
               >
                 <img
-                  src="/assets/generated/legend-techno-logo-v2.dim_512x512.png"
-                  alt="ALGLOE TECHNO SOLUTIONS"
-                  className="h-12 w-12 object-contain"
+                  src="/assets/generated/alglobe-techno-logo-A-gradient.dim_512x512.png"
+                  alt="ALGLOBE TECHNO SOLUTIONS"
+                  className="logo-pulse-image h-12 w-12 object-contain"
                 />
                 <span className="font-bold text-foreground">
-                  ALGLOE TECHNO
+                  ALGLOBE TECHNO
                 </span>
               </button>
               <p className="text-sm text-muted-foreground">
@@ -86,6 +98,14 @@ export default function Footer() {
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:text-foreground"
                   >
                     Ratings
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={navigateToTeam}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:text-foreground"
+                  >
+                    Team
                   </button>
                 </li>
               </ul>
@@ -146,18 +166,10 @@ export default function Footer() {
 
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
             <p>
-              © {currentYear} ALGLOE TECHNO SOLUTIONS. All rights reserved.
+              © {currentYear} ALGLOBE TECHNO SOLUTIONS. All rights reserved.
             </p>
             <p className="mt-2 flex items-center justify-center gap-1">
-              Built with <Heart className="h-4 w-4 text-primary fill-primary" /> using{' '}
-              <a
-                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                caffeine.ai
-              </a>
+              Built with <Heart className="h-4 w-4 text-primary fill-primary" /> using alglobe
             </p>
           </div>
         </div>

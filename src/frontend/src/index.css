@@ -109,6 +109,15 @@
         }
     }
 
+    @keyframes logo-pulse-interaction {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
     .animate-float-gentle {
         animation: float-gentle 4s ease-in-out infinite;
     }
@@ -121,11 +130,30 @@
         animation: pulse-scale 3s ease-in-out infinite;
     }
 
+    /* Logo pulse on hover/focus - no layout shift */
+    .logo-pulse-trigger {
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .logo-pulse-trigger:hover .logo-pulse-image,
+    .logo-pulse-trigger:focus-visible .logo-pulse-image {
+        animation: logo-pulse-interaction 0.6s ease-in-out;
+    }
+
+    .logo-pulse-image {
+        will-change: transform;
+    }
+
     /* Disable animations for users who prefer reduced motion */
     @media (prefers-reduced-motion: reduce) {
         .animate-float-gentle,
         .animate-tilt-gentle,
         .animate-pulse-scale {
+            animation: none;
+        }
+
+        .logo-pulse-trigger:hover .logo-pulse-image,
+        .logo-pulse-trigger:focus-visible .logo-pulse-image {
             animation: none;
         }
     }

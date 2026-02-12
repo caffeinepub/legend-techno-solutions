@@ -56,7 +56,7 @@ export default function AboutSection({ heading, description }: AboutSectionProps
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {heading || 'About ALGLOE TECHNO SOLUTIONS'}
+              {heading || 'About ALGLOBE TECHNO SOLUTIONS'}
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               {description || 'We are a trusted technology services provider specializing in computer repair, laptop maintenance, CCTV security systems, and networking solutions. Our mission is to deliver reliable, professional service that keeps your technology running at its best.'}

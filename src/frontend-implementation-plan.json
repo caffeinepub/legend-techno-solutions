@@ -1,74 +1,39 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rename company branding to ALGLOE TECHNO SOLUTIONS and enlarge header",
+  "title": "Clickable Hero stats modal with 1–1000 list and remove 24/7 stat",
   "requirements": [
     {
-      "id": "REQ-37",
-      "summary": "Replace all user-facing occurrences of \"Legend Techno Solutions\" with \"ALGLOE TECHNO SOLUTIONS\" across marketing UI and shared metadata (header, footer, logo lightbox, document title/meta).",
+      "id": "REQ-62",
+      "summary": "Make the \"Years Experience\" and \"Happy Clients\" Hero stats open a closable modal showing a scrollable 1–1000 list.",
       "acceptanceCriteria": [
-        "Header displays the company name exactly as \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" text in the header).",
-        "Footer branding/copyright uses \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" text in the footer).",
-        "Logo-related accessible text (e.g., aria-label/alt) uses \"ALGLOE TECHNO SOLUTIONS\" (no remaining \"Legend Techno Solutions\" accessible strings in these components).",
-        "`frontend/index.html` `<title>` (and any meta description text that includes the company name) is updated to reference \"ALGLOE TECHNO SOLUTIONS\"."
+        "On the Home page Hero section, both the \"Years Experience\" and \"Happy Clients\" stat blocks are clickable/tappable.",
+        "Clicking either stat opens a modal/dialog without navigating away from the page.",
+        "The opened modal shows a visible list of numbers from 1 to 1000 inclusive.",
+        "The list is scrollable and does not overflow the viewport on mobile or desktop.",
+        "The modal can be closed via an explicit close control and by pressing Escape (if using the existing dialog/modal patterns).",
+        "All user-facing text added for this feature is in English."
       ],
       "file_operations": [
         {
-          "path": "frontend/index.html",
+          "path": "frontend/src/components/sections/HeroSection.tsx",
           "operation": "modify",
-          "description": "Update the HTML document title (and any meta description text if it includes the company name) to reference \"ALGLOE TECHNO SOLUTIONS\" instead of \"Legend Techno Solutions\"."
-        },
-        {
-          "path": "frontend/src/components/site/Header.tsx",
-          "operation": "modify",
-          "description": "Update header branding strings and accessibility text (aria-label, image alt, visible brand text) to use \"ALGLOE TECHNO SOLUTIONS\"."
-        },
-        {
-          "path": "frontend/src/components/site/Footer.tsx",
-          "operation": "modify",
-          "description": "Update footer branding strings (logo button aria-label, logo alt text, brand text, and copyright line) to use \"ALGLOE TECHNO SOLUTIONS\"."
-        },
-        {
-          "path": "frontend/src/components/site/LogoLightbox.tsx",
-          "operation": "modify",
-          "description": "Update logo lightbox accessible text (dialog aria-label and logo image alt) to use \"ALGLOE TECHNO SOLUTIONS\"."
-        },
-        {
-          "path": "frontend/src/components/sections/AboutSection.tsx",
-          "operation": "modify",
-          "description": "Update any fallback/static marketing copy that still references \"Legend Techno Solutions\" (e.g., default about heading/description) to \"ALGLOE TECHNO SOLUTIONS\"."
+          "description": "Add interactive behavior to the two specified stat blocks: make them keyboard- and pointer-accessible controls that open an in-place modal/dialog. Implement modal state, Escape-to-close handling, body scroll locking while open, and an explicit Close control. Render a scrollable list of numbers 1–1000 within a max-height container to prevent viewport overflow on mobile/desktop, and ensure no navigation occurs."
         }
       ]
     },
     {
-      "id": "REQ-38",
-      "summary": "Increase the header’s overall size while preserving responsive layout and usable navigation/mobile menu.",
+      "id": "REQ-63",
+      "summary": "Remove the \"24/7 Support Available\" Hero stat and keep the remaining stats responsive and balanced.",
       "acceptanceCriteria": [
-        "The header height is increased compared to the current implementation (e.g., larger container height and/or increased logo/text sizing) and remains visually consistent in dark theme.",
-        "On desktop widths, the navigation links remain on a single line and are not clipped.",
-        "On mobile widths, the menu button remains visible and functional, and the header does not overlap page content."
+        "The Hero section no longer displays \"24/7\" or \"Support Available\" anywhere in the stats row/grid.",
+        "The stats grid remains responsive across breakpoints (no broken spacing/alignment after removing the third item)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/site/Header.tsx",
+          "path": "frontend/src/components/sections/HeroSection.tsx",
           "operation": "modify",
-          "description": "Increase header container height and adjust logo/branding sizing (and spacing) to make the header visibly larger while keeping desktop nav on one line and maintaining functional mobile menu behavior."
-        }
-      ]
-    },
-    {
-      "id": "REQ-39",
-      "summary": "Ensure \"ALGLOE TECHNO SOLUTIONS\" is prominently visible in the header branding area across breakpoints, including small screens, without breaking logo lightbox behavior.",
-      "acceptanceCriteria": [
-        "On mobile and desktop, the header displays the text \"ALGLOE TECHNO SOLUTIONS\" in the branding area without requiring opening the menu.",
-        "If space is constrained on very small screens, the company name may wrap, truncate, or reduce font size, but it must remain visible and readable (not fully hidden).",
-        "The logo click/tap behavior (opening the logo lightbox) continues to work as before."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/site/Header.tsx",
-          "operation": "modify",
-          "description": "Adjust responsive header branding so the company name \"ALGLOE TECHNO SOLUTIONS\" remains visible on mobile (remove full hide-on-mobile behavior; allow wrap/truncate/size reduction as needed) while preserving the logo lightbox trigger behavior."
+          "description": "Remove the third stat block containing \"24/7\" and \"Support Available\" and adjust the stats grid classes/layout so the remaining two items are visually balanced and responsive across breakpoints (e.g., update column count/gaps/centering as needed)."
         }
       ]
     }

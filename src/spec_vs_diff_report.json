@@ -1,57 +1,23 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T14:41:34.283Z",
-  "summary": "Core rename work is partially implemented: header branding text/aria/alt and logo lightbox labels were updated to “ALGLOE TECHNO SOLUTIONS”, header height/logo/text sizes were increased, `frontend/index.html` title/meta were updated, and `backend/main.mo` default site content now uses the new name. However, the footer branding text shown in the diff appears to still be incomplete (only “ALGLOE TECHNO”), and the diff summary also indicates several unrelated frontend changes that were not requested.",
-  "missing_requirements": [
-    {
-      "id": "REQ-37",
-      "requirement": "Update all user-facing occurrences of “Legend Techno Solutions” to “ALGLOE TECHNO SOLUTIONS”, including footer branding/copyright.",
-      "reason": "The footer branding text shown in the diff does not display the full company name; it renders only “ALGLOE TECHNO”, which does not meet the acceptance criteria that footer branding uses “ALGLOE TECHNO SOLUTIONS”.",
-      "evidence": [
-        "frontend/src/components/site/Footer.tsx"
-      ]
-    }
-  ],
+  "generatedAt": "2026-02-12T18:33:08.649Z",
+  "summary": "HeroSection.tsx appears updated to make the two remaining Hero stats clickable and open a dialog with a scrollable 1–1000 list, and the 24/7 stat appears removed. However, the diff also includes unrelated modifications to project metadata/summary files not requested in the BuildRequest.",
+  "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Added/mentioned a Ratings section and related admin dashboard functionality.",
-      "reason": "The BuildRequest explicitly says not to change inquiry/rating functionality beyond what’s necessary for the rename/header adjustments, but the diff summary describes new ratings-related UI and hooks.",
+      "description": "Unrelated project metadata/summary files were modified, which is outside the requested scope (Hero stat click behavior + removing the 24/7 stat only).",
+      "reason": "BuildRequest constraints say to keep changes limited to implementing the requested Hero stat click behavior and removing the \"24/7\" stat; modifying project summary/state files is not part of the requested frontend behavior change.",
       "evidence": [
-        "frontend-file-summaries.txt"
-      ]
-    },
-    {
-      "description": "Hero section changed to use an autoplay looping background video with fallback behavior.",
-      "reason": "Not requested; BuildRequest scope is rename + enlarge header and update defaults.",
-      "evidence": [
-        "frontend-file-summaries.txt"
-      ]
-    },
-    {
-      "description": "Contact section changed to include a clickable tel: link and other behavior/typing changes.",
-      "reason": "Not requested; BuildRequest non-goals include not changing site contact details/functionality beyond what’s necessary for renaming/header layout.",
-      "evidence": [
-        "frontend-file-summaries.txt"
-      ]
-    },
-    {
-      "description": "Global theme/style changes (OKLCH color system, dark mode default, Tailwind token/shadow changes).",
-      "reason": "Not requested; BuildRequest does not ask for visual theme overhaul, only a larger header and renamed branding.",
-      "evidence": [
-        "frontend-file-summaries.txt"
+        "frontend-file-summaries.txt",
+        "project_state.json"
       ]
     }
   ],
-  "confidence": 0.62,
+  "confidence": 0.67,
   "changed_files": [
-    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/index.html",
-    "frontend/src/components/sections/AboutSection.tsx",
-    "frontend/src/components/site/Footer.tsx",
-    "frontend/src/components/site/Header.tsx",
-    "frontend/src/components/site/LogoLightbox.tsx",
+    "frontend/src/components/sections/HeroSection.tsx",
     "project_state.json"
   ]
 }
